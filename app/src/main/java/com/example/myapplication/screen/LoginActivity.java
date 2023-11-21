@@ -16,7 +16,6 @@ public class LoginActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-    private Context context = getApplicationContext();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
         binding.ForgotPw.setOnClickListener(v -> {
-            new helpp(context).showToast("Still in progress");
+            new helpp(getApplicationContext()).showToast("Still in progress");
         });
     }
 
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
         firebaseAuth.signInWithEmailAndPassword("email", "password").addOnCompleteListener(task -> {
-            new helpp(context).showToast("Anda Berhasil Login");
+            new helpp(getApplicationContext()).showToast("Anda Berhasil Login");
             Intent intent = new Intent(LoginActivity.this, SignUp.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -60,9 +59,9 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
         if (email.isEmpty()) {
-            new helpp(context).showToast("Silahkan memasukan email");
+            new helpp(getApplicationContext()).showToast("Silahkan memasukan email");
         } else if (password.isEmpty()) {
-            new helpp(context).showToast("Silahkan memasukan password");
+            new helpp(getApplicationContext()).showToast("Silahkan memasukan password");
         } else {
             userLogin();
         }
