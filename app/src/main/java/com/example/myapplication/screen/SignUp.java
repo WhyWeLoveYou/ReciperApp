@@ -1,9 +1,19 @@
 package com.example.myapplication.screen;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ActivitySignUpBinding;
@@ -14,11 +24,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.HashMap;
+
 public class SignUp extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
+    private Context context = getApplicationContext();
+    private String encodedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +43,98 @@ public class SignUp extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
+        listener();
     }
 
-    private void CreateUser() {
-        firebaseAuth.createUserWithEmailAndPassword("email", "password").addOnCompleteListener(
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        new helpp(getApplicationContext()).showToast("hi");
+    private void listener() {
+        binding.imageProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            pickImage.launch(intent);
+        });
+        binding.ButtonLogin.setOnClickListener(v -> {
+            if (validator()) {
+                CreateUser();
+            }
+        });
+    }
+
+    private String encodeImage(Bitmap bitmap) {
+        int previewW = 150;
+        int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    if (result.getData() != null) {
+                        Uri imageUri = result.getData().getData();
+                        try {
+                            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                            binding.imageProfile.setImageBitmap(bitmap);
+                            binding.addingImage.setVisibility(View.GONE);
+                            encodedImage = encodeImage(bitmap);
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-        );
+            }
+    );
+
+    private void CreateUser() {
+        String Email = binding.InputEmal.getText().toString();
+        String Password = binding.InputPw.getText().toString();
+        firebaseAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
+            new helpp(context).showToast("Berhasil membuat akun");
+            HashMap<String, Object> user = new HashMap<>();
+            user.put("Nama", binding.InputName.getText().toString());
+            user.put("Email", binding.InputEmal.getText().toString());
+            user.put("Image", encodedImage);
+            db.collection("users").add(user).addOnCompleteListener(
+                    documentReference -> {
+                        new helpp(context).showToast("Berhasil");
+                    }
+            );
+        });
+    }
+
+    private Boolean validator() {
+        String Email = binding.InputEmal.getText().toString();
+        String Password = binding.InputPw.getText().toString();
+        String Cpassword = binding.InputCPw.getText().toString();
+        String Nama = binding.InputName.getText().toString();
+        if (Password.isEmpty()) {
+            new helpp(context).showToast("Password kosong");
+            return false;
+        }
+        if (Cpassword.isEmpty()) {
+            new helpp(context).showToast("Password kedua kosong");
+            return false;
+        }
+        if (Email.isEmpty()) {
+            new helpp(context).showToast("Email Kosong");
+            return false;
+        }
+        if (Nama.isEmpty()) {
+            new helpp(context).showToast("Nama Kosong");
+            return false;
+        }
+        if (Password != Cpassword) {
+            new helpp(context).showToast("Password tidak sesuai");
+            return false;
+        }
+        if (encodedImage == null) {
+            new helpp(context).showToast("Gambar Kosong");
+            return false;
+        }
+        return true;
     }
 }
