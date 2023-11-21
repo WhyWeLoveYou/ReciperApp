@@ -2,6 +2,7 @@ package com.example.myapplication.screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.myapplication.databinding.LoginActivityBinding;
@@ -18,10 +19,18 @@ public class LoginActivity extends AppCompatActivity {
         binding = LoginActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         db = FirebaseFirestore.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(this, SignUp.class);
+            startActivity(intent);
+        } else {
+            listener();
+        }
     }
 
-    private void createUser() {
-        firebaseAuth.createUserWithEmailAndPassword("email", "password");
-        db.collection("users");
+    private void listener() {
+    }
+
+    private void userLogin() {
+        firebaseAuth.signInWithEmailAndPassword("email", "password");
     }
 }
