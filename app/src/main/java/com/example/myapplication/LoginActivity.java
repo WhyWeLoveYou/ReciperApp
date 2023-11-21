@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
