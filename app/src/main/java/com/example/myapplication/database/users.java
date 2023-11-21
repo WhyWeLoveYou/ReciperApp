@@ -2,16 +2,22 @@ package com.example.myapplication.database;
 
 public class users {
 
-    // variables for storing our data.
-    private String Usersname, UsersEmail, UsersPic;
+    private String Usersname, UsersEmail, UsersPic, id;
 
     public users() {
 
     }
-    public users(String Usersname, String UsersEmail, String UsersPic) {
+    public users(String id, String Usersname, String UsersEmail, String UsersPic) {
+        this.id = id;
         this.Usersname = Usersname;
         this.UsersEmail = UsersEmail;
         this.UsersPic = UsersPic;
+    }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsersname() {
