@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648943441087",
+    "project_id": "mkanan-cf95b",
+    "storage_bucket": "mkanan-cf95b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648943441087:android:f9ed8678d81f8931fb220a",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEOWbhVxI_NMBCq2BCnmcQOrivLDLguwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
