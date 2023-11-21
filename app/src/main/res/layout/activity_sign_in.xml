@@ -96,7 +96,7 @@
             android:id="@+id/CreateAccount"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="Create New Account"
-            android:textColor="@color/primary"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
             android:id="@+id/ForgotPw"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="Forgot Password"
-            android:textColor="@color/primary"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
 
