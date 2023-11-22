@@ -44,9 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/background_content"
@@ -99,7 +97,32 @@
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp" />
 
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </FrameLayout>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabCradleMargin="@dimen/_10sdp"
+            app:fabCradleRoundedCornerRadius="@dimen/_50sdp"
+            tools:ignore="BottomAppBar,MissingConstraints">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@android:color/transparent"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_menu" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
     </FrameLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
