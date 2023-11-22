@@ -104,6 +104,6 @@ public class HomeFragment extends Fragment {
 
         public void setImage(int image) {
             this.image =image;
-        }
+       }
     }
 }

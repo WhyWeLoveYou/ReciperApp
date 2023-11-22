@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.myapplication.R;
@@ -37,13 +38,16 @@ public class MainScreen extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
+                        binding.BnewChat.setVisibility(View.VISIBLE);
                         replaceFragment(new HomeFragment());
                         break;
                     case R.id.receipt:
+                        binding.BnewChat.setVisibility(View.GONE);
                         replaceFragment(new ReceiptFragment());
                         break;
                     case R.id.profile:
                         replaceFragment(new ProfileFragment());
+                        binding.BnewChat.setVisibility(View.GONE);
                         break;
                     default:
                         break;
