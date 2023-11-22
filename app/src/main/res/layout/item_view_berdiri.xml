@@ -13,7 +13,8 @@
         android:layout_height="@dimen/_80sdp"
         android:layout_marginStart="@dimen/_123sdp"
         android:layout_marginTop="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_123sdp" />
+        android:layout_marginEnd="@dimen/_123sdp"
+        android:src="@drawable/photo"/>
 
     <TextView
         android:id="@+id/namamakanan"

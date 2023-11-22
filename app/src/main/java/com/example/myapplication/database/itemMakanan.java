@@ -1,16 +1,17 @@
 package com.example.myapplication.database;
 
-public class cartitem {
+public class itemMakanan {
+    private String NamaMakanan, Alamat, Harga, Deskripsi;
 
-    private String NamaMakanan, Alamat, Harga;
-
-    public cartitem() {
+    public itemMakanan() {
 
     }
-    public cartitem(String NamaMakanan, String Alamat, String Harga) {
+
+    public itemMakanan(String NamaMakanan,String Alamat,String Harga,String Deskripsi) {
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
         this.Harga = Harga;
+        this.Deskripsi = Deskripsi;
     }
 
     public String getNamaMakanan() {
@@ -35,5 +36,13 @@ public class cartitem {
 
     public void setHarga(String Harga) {
         this.Harga = Harga;
+    }
+
+    public String getDeskripsi() {
+        return Deskripsi;
+    }
+
+    public void setDeskripsi(String Deskripsi) {
+        this.Deskripsi = Deskripsi;
     }
 }

@@ -43,7 +43,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        // creating variables for our text views.
         private final TextView textViewMakanan;
         private final TextView textViewDesk;
         private final TextView textViewHarga;
