@@ -23,21 +23,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser userC = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-        if (checkU()) {
+        if (userC == null) {
             listener();
         } else {
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
-        }
-    }
-
-    private Boolean checkU() {
-        FirebaseUser userC = FirebaseAuth.getInstance().getCurrentUser();
-        if (userC != null) {
-            return false;
-        } else {
-            return true;
         }
     }
 
