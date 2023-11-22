@@ -1,13 +1,13 @@
 package com.example.myapplication.database;
 
-public class cartitem {
-
+public class itemTambahM {
     private String NamaMakanan, Alamat, Harga;
 
-    public cartitem() {
+    public itemTambahM() {
 
     }
-    public cartitem(String NamaMakanan, String Alamat, String Harga) {
+
+    public itemTambahM(String NamaMakanan,String Alamat,String Harga) {
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
         this.Harga = Harga;

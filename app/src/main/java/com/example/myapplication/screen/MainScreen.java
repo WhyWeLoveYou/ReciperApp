@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.database.itemTambahM;
 import com.example.myapplication.databinding.ActivityMainScreenBinding;
 import com.example.myapplication.databinding.ProfileBinding;
 import com.example.myapplication.screen.fragment.HomeFragment;
@@ -22,6 +23,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -37,7 +40,6 @@ public class MainScreen extends AppCompatActivity {
         binding.BnewChat.setOnClickListener(view -> {
             Intent val = new Intent(this, CartActivity.class);
             startActivity(val);
-            finish();
         });
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -71,6 +73,9 @@ public class MainScreen extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
     }
+
+
+
 
 
 }

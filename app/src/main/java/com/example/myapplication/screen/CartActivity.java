@@ -52,6 +52,7 @@ public class CartActivity extends AppCompatActivity {
         binding.ImgBack.setOnClickListener(view -> {
             Intent val = new Intent(this, MainScreen.class);
             startActivity(val);
+            finish();
         });
 
         db.collection("users").document(Cemail).collection("item").get()

@@ -18,12 +18,6 @@
             android:name=".screen.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".screen.cart"
-            android:exported="false" />
-        <activity
-            android:name=".screen.Profile"
-            android:exported="false" />
-        <activity
             android:name=".screen.MainScreen"
             android:exported="false" />
         <activity
