@@ -9,11 +9,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:text="@string/receipt"
-        android:textSize="@dimen/_20ssp"/>
+        android:textSize="@dimen/_30ssp"/>
 
     <View
         android:layout_width="match_parent"
@@ -32,11 +32,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/recommendation_receipt"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
@@ -61,11 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/yang_ada"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
