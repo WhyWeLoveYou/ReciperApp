@@ -107,7 +107,7 @@ public class SignUp extends AppCompatActivity {
             db.collection("users").document(Email).set(user).addOnCompleteListener(
                     documentReference -> {
                         showToast("Berhasil");
-                        Intent intent = new Intent(this, Profile.class);
+                        Intent intent = new Intent(this, MainScreen.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }

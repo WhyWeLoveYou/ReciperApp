@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(this, Profile.class);
+            Intent intent = new Intent(this, MainScreen.class);
             startActivity(intent);
             finish();
         }
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 showToast("Berhasil login");
-                Intent intent = new Intent(LoginActivity.this, Profile.class);
+                Intent intent = new Intent(LoginActivity.this, MainScreen.class);
                 startActivity(intent);
                 finish();
             }
