@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.myapplication.R;
@@ -31,7 +32,6 @@ public class MainScreen extends AppCompatActivity {
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
-        binding.bottomAppBar.setBackground(null);
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
