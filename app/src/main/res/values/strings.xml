@@ -10,6 +10,8 @@
     <string name="name">Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="have_an_account">Have An Account?</string>
+    <string name="receipt">Receipt</string>
+    <string name="yang_ada">Yang Ada Saat Ini 💀🥶</string>
     <string name="recommendation_receipt">Recommendation</string>
     <string name="recommendation_food">Recommendation</string>
     <string name="category">Category</string>
