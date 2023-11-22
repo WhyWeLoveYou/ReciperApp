@@ -19,6 +19,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center_vertical"
@@ -32,6 +33,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewMakanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Makanan"
@@ -40,6 +42,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewDesk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Makanan"
@@ -47,6 +50,7 @@
                     android:textSize="@dimen/_13ssp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewJumlah"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -60,6 +64,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewHarga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_2sdp"
@@ -72,6 +77,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/imageViewDelete"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_gravity="center_vertical"
