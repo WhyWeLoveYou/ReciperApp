@@ -42,6 +42,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         listener();
     }
@@ -131,7 +132,7 @@ public class SignUp extends AppCompatActivity {
             showToast("Nama Kosong");
             return false;
         }
-        if (Password != Cpassword) {
+        if (!Password.equals(Cpassword)) {
             showToast("Password tidak sesuai");
             return false;
         }
