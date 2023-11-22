@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:text="@string/welcome"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold" />
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="@string/please_login_to_continue"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/second_text"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold" />
@@ -96,6 +98,7 @@
             android:id="@+id/CreateAccount"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="Create New Account"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
@@ -106,6 +109,7 @@
             android:id="@+id/ForgotPw"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="Forgot Password"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />

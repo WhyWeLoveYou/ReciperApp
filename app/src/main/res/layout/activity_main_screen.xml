@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,44 +9,43 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/BnewChat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/BnewChat"
             android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_24sdp"
             android:layout_marginBottom="@dimen/_75sdp"
+            android:backgroundTint="@color/primary"
             android:contentDescription="@string/app_name"
             android:src="@drawable/cart_vector"
-            android:backgroundTint="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:fabCradleMargin="@dimen/_10sdp"
-        app:fabCradleRoundedCornerRadius="@dimen/_50sdp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20sdp"
-            app:labelVisibilityMode="labeled"
-            android:background="@android:color/transparent"
-            app:menu="@menu/bottom_menu"/>
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
