@@ -60,12 +60,11 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             showToast("Anda Berhasil Login");
             Intent intent = new Intent(LoginActivity.this, Profile.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
         }).addOnFailureListener(task -> {
             FirebaseAuthException e = (FirebaseAuthException)task.getCause();
             Toast.makeText(LoginActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return;
         });
     }
 

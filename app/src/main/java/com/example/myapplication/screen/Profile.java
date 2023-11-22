@@ -97,7 +97,7 @@ public class Profile extends AppCompatActivity {
     private void getUserDetail() {
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            String Cuser = auth.getCurrentUser().getUid();
+            String Cuser = auth.getCurrentUser().getEmail();
             firebaseFirestore.collection("users").document(Cuser).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
