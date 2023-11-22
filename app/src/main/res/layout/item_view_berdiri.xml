@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/_10sdp"
     android:gravity="center">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageview"
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_80sdp"
