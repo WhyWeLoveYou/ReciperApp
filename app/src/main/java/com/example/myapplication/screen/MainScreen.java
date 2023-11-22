@@ -48,7 +48,7 @@ public class MainScreen extends AppCompatActivity {
                     default:
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
