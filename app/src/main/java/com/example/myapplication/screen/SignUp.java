@@ -55,6 +55,7 @@ public class SignUp extends AppCompatActivity {
         });
         binding.ButtonLogin.setOnClickListener(v -> {
             if (validator()) {
+                showToast("Mohon jangan tekan 2 kali dan tunggu sebentar");
                 CreateUser();
             }
         });
@@ -95,17 +96,20 @@ public class SignUp extends AppCompatActivity {
     );
 
     private void CreateUser() {
+        firebaseAuth = FirebaseAuth.getInstance();
         String Email = binding.InputEmal.getText().toString();
         String Password = binding.InputPw.getText().toString();
         firebaseAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
-            showToast("Berhasil membuat akun");
             HashMap<String, Object> user = new HashMap<>();
             user.put("Nama", binding.InputName.getText().toString());
             user.put("Email", binding.InputEmal.getText().toString());
             user.put("Image", encodedImage);
-            db.collection("users").add(user).addOnCompleteListener(
+            db.collection("users").document(Email).set(user).addOnCompleteListener(
                     documentReference -> {
                         showToast("Berhasil");
+                        Intent intent = new Intent(this, MainScreen.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
             );
         });
@@ -138,6 +142,10 @@ public class SignUp extends AppCompatActivity {
         }
         if (encodedImage == null) {
             showToast("Gambar Kosong");
+            return false;
+        }
+        if (Password.length() < 6) {
+            showToast("Password kurang dari 6");
             return false;
         }
         return true;
