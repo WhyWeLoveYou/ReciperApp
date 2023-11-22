@@ -12,6 +12,7 @@ import com.example.myapplication.databinding.ActivitySignInBinding;
 import com.example.myapplication.helper.helpp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,10 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                showToast("Anda Berhasil Login");
+            public void onSuccess(AuthResult authResult) {
+                showToast("Berhasil login");
                 Intent intent = new Intent(LoginActivity.this, Profile.class);
                 startActivity(intent);
                 finish();
