@@ -7,14 +7,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.ImageView;
 import android.widget.Toast;
+=======
+>>>>>>> origin/master
 
 import com.example.myapplication.R;
 
 
 public class ReceiptFragment extends Fragment {
 
+<<<<<<< HEAD
     ImageView imageView;
 
     @Override
@@ -39,3 +43,12 @@ public class ReceiptFragment extends Fragment {
         return view;
     }
 }
+=======
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_receipt, container, false);
+    }
+}
+>>>>>>> origin/master
