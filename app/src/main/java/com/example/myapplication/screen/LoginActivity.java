@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.myapplication.databinding.ActivitySignInBinding;
 import com.example.myapplication.helper.helpp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,12 +23,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser userC = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
+        if (userC == null) {
+            listener();
+        } else {
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
-        } else {
-            listener();
         }
     }
 
