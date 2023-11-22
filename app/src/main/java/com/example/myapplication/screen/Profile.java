@@ -43,11 +43,11 @@ public class Profile extends AppCompatActivity {
         binding = ProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         listener();
         getUserDetail();
-        replaceFragment(new ProfileFragment());
 
         binding.bottomAppBar.setOnMenuItemClickListener( item -> {
 
@@ -55,15 +55,12 @@ public class Profile extends AppCompatActivity {
 
                 case R.id.home:
                     replaceFragment(new HomeFragment());
-                    Intent intent = new Intent(this, MainScreen.class);
-                    startActivity(intent);
                     break;
                 case R.id.receipt:
                     replaceFragment(new ReceiptFragment());
                     break;
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
-                    showToast("Kamu sudah di profile");
                     break;
                 default:
                     break;
