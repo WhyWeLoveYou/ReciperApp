@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.myapplication.databinding.ActivitySignInBinding;
 import com.example.myapplication.helper.helpp;
@@ -30,6 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
     private void listener() {
         binding.ButtonLogin.setOnClickListener(v -> {
             validator();
@@ -40,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
         binding.ForgotPw.setOnClickListener(v -> {
-            new helpp(getApplicationContext()).showToast("Still in progress");
+            showToast("Still in progress");
         });
     }
 
@@ -48,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
         firebaseAuth.signInWithEmailAndPassword("email", "password").addOnCompleteListener(task -> {
-            new helpp(getApplicationContext()).showToast("Anda Berhasil Login");
+            showToast("Anda Berhasil Login");
             Intent intent = new Intent(LoginActivity.this, SignUp.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -59,9 +64,9 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
         if (email.isEmpty()) {
-            new helpp(getApplicationContext()).showToast("Silahkan memasukan email");
+            showToast("Silahkan memasukan email");
         } else if (password.isEmpty()) {
-            new helpp(getApplicationContext()).showToast("Silahkan memasukan password");
+            showToast("Silahkan memasukan password");
         } else {
             userLogin();
         }
