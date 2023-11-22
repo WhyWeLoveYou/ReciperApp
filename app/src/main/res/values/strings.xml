@@ -13,4 +13,6 @@
     <string name="recommendation_receipt">Recommendation</string>
     <string name="recommendation_food">Recommendation</string>
     <string name="title">Receipt</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
