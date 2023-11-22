@@ -51,6 +51,26 @@ public class ReceiptFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 
+    public class item{
+        private String name;
+        private int image;
+
+        public item(String name, int image) {
+            this.name = name;
+            this.image = image;
+        }
+
+        public String getName(){
+            return name;
+        }
+
+        public int getImage(){
+            return image;
+        }
+    }
 
 }

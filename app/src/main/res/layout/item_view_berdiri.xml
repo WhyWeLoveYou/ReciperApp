@@ -40,6 +40,7 @@
         android:textSize="@dimen/_13sdp"
         android:textColor="@color/second_text"
         android:layout_below="@id/namamakanan"
+        android:gravity="center"
         android:layout_marginLeft="@dimen/_100sdp"/>
     <TextView
         android:layout_width="@dimen/_200sdp"

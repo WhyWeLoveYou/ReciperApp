@@ -11,5 +11,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="have_an_account">Have An Account?</string>
     <string name="recommendation_receipt">Recommendation</string>
+    <string name="recommendation_food">Recommendation</string>
     <string name="title">Receipt</string>
 </resources>

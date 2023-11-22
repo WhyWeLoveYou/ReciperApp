@@ -18,12 +18,13 @@
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_RecommendationReceipt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_28sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_13sdp"
         android:orientation="horizontal"
         android:scrollbars="horizontal"/>
 
