@@ -26,12 +26,12 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser userC = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-        if (userC == null) {
-            listener();
-        } else {
-            Intent intent = new Intent(this, SignUp.class);
+        if (firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(this, Profile.class);
             startActivity(intent);
+            finish();
         }
+        listener();
     }
 
     private void showToast(String message) {
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             validator();
         });
         binding.CreateAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, Profile.class);
+            Intent intent = new Intent(LoginActivity.this, SignUp.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
@@ -53,11 +53,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
+        firebaseAuth = FirebaseAuth.getInstance();
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword("email", "password").addOnCompleteListener(task -> {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             showToast("Anda Berhasil Login");
-            Intent intent = new Intent(LoginActivity.this, SignUp.class);
+            Intent intent = new Intent(LoginActivity.this, Profile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
