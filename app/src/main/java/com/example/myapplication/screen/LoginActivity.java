@@ -10,6 +10,10 @@ import android.widget.Toast;
 
 import com.example.myapplication.databinding.ActivitySignInBinding;
 import com.example.myapplication.helper.helpp;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser userC = firebaseAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             Intent intent = new Intent(this, Profile.class);
@@ -57,15 +60,21 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         String email = binding.InputEmal.getText().toString();
         String password = binding.InputPw.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            showToast("Anda Berhasil Login");
-            Intent intent = new Intent(LoginActivity.this, Profile.class);
-            startActivity(intent);
-            finish();
-        }).addOnFailureListener(task -> {
-            FirebaseAuthException e = (FirebaseAuthException)task.getCause();
-            Toast.makeText(LoginActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                showToast("Anda Berhasil Login");
+                Intent intent = new Intent(LoginActivity.this, Profile.class);
+                startActivity(intent);
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(LoginActivity.this, "Error - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
+
     }
 
     private void validator() {
