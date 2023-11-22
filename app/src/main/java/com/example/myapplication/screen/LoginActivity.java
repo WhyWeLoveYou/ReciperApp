@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.myapplication.databinding.ActivitySignInBinding;
 import com.example.myapplication.helper.helpp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -61,6 +62,10 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, Profile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+        }).addOnFailureListener(task -> {
+            FirebaseAuthException e = (FirebaseAuthException)task.getCause();
+            Toast.makeText(LoginActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            return;
         });
     }
 
