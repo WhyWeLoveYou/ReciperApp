@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -47,6 +48,12 @@ public class CartActivity extends AppCompatActivity {
         cartRVAdapter = new cartAdapter(cartArrayList, this);
         binding.cartRv.setAdapter(cartRVAdapter);
         String Cemail = auth.getCurrentUser().getEmail();
+
+        binding.ImgBack.setOnClickListener(view -> {
+            Intent val = new Intent(this, MainScreen.class);
+            startActivity(val);
+            finish();
+        });
 
         db.collection("users").document(Cemail).collection("item").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
