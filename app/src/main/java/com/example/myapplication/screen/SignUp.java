@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ActivitySignUpBinding;
@@ -34,7 +35,6 @@ public class SignUp extends AppCompatActivity {
     private ActivitySignUpBinding binding;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-    private Context context = getApplicationContext();
     private String encodedImage;
 
     @Override
@@ -57,6 +57,10 @@ public class SignUp extends AppCompatActivity {
                 CreateUser();
             }
         });
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private String encodeImage(Bitmap bitmap) {
@@ -93,14 +97,14 @@ public class SignUp extends AppCompatActivity {
         String Email = binding.InputEmal.getText().toString();
         String Password = binding.InputPw.getText().toString();
         firebaseAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
-            new helpp(context).showToast("Berhasil membuat akun");
+            showToast("Berhasil membuat akun");
             HashMap<String, Object> user = new HashMap<>();
             user.put("Nama", binding.InputName.getText().toString());
             user.put("Email", binding.InputEmal.getText().toString());
             user.put("Image", encodedImage);
             db.collection("users").add(user).addOnCompleteListener(
                     documentReference -> {
-                        new helpp(context).showToast("Berhasil");
+                        showToast("Berhasil");
                     }
             );
         });
@@ -112,27 +116,27 @@ public class SignUp extends AppCompatActivity {
         String Cpassword = binding.InputCPw.getText().toString();
         String Nama = binding.InputName.getText().toString();
         if (Password.isEmpty()) {
-            new helpp(context).showToast("Password kosong");
+           showToast("Password kosong");
             return false;
         }
         if (Cpassword.isEmpty()) {
-            new helpp(context).showToast("Password kedua kosong");
+            showToast("Password kedua kosong");
             return false;
         }
         if (Email.isEmpty()) {
-            new helpp(context).showToast("Email Kosong");
+            showToast("Email Kosong");
             return false;
         }
         if (Nama.isEmpty()) {
-            new helpp(context).showToast("Nama Kosong");
+            showToast("Nama Kosong");
             return false;
         }
         if (Password != Cpassword) {
-            new helpp(context).showToast("Password tidak sesuai");
+            showToast("Password tidak sesuai");
             return false;
         }
         if (encodedImage == null) {
-            new helpp(context).showToast("Gambar Kosong");
+            showToast("Gambar Kosong");
             return false;
         }
         return true;
