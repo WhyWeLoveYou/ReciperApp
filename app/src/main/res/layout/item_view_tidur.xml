@@ -47,13 +47,12 @@
         tools:text="Rp. 12.000" />
 
     <Button
+        android:id="@+id/tambahMakanan"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_220sdp"
         android:layout_marginTop="@dimen/_39sdp"
         android:backgroundTint="@color/kuningnigga"
-        android:onClick="Tambah"
-        android:id="@+id/tambahmakanan"
         android:text="Tambah"
         android:textColor="@color/black" />
 
