@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
     }
     public class item {
 
-        String namaMakanan;
+        String namaMakanan, tambahMakanan;
         int hargaMakanan;
         int image;
 
@@ -81,6 +81,13 @@ public class HomeFragment extends Fragment {
 
         public void setNamamMakanan(String namamMakanan) {
             this.namaMakanan = namamMakanan;
+        }
+
+        public String getTambahMakanan() {
+            return tambahMakanan;
+        }
+        public void setTambahMakanan(String tambahMakanan) {
+            this.tambahMakanan = tambahMakanan;
         }
 
         public int getHargaMakanan() {
