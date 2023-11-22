@@ -10,25 +10,21 @@
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="13dp" />
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginStart="@dimen/_123sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginEnd="@dimen/_123sdp" />
 
     <TextView
+        android:id="@+id/namamakanan"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_80sdp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginTop="@dimen/_87sdp"
+        android:layout_marginStart="@dimen/_60sdp"
+        android:layout_marginEnd="@dimen/_60sdp"
+        android:textAlignment="center"
         android:text="Nama Makanan"
         android:textColor="@color/black"
-        android:id="@+id/namamakanan"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold" />
 
@@ -36,12 +32,13 @@
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_20sdp"
         android:id="@+id/alamatmakanan"
+        android:layout_marginStart="@dimen/_60sdp"
+        android:layout_marginEnd="@dimen/_60sdp"
         android:text="Jl.Adi Sucipto No.56"
         android:textSize="@dimen/_13sdp"
         android:textColor="@color/second_text"
         android:layout_below="@id/namamakanan"
-        android:gravity="center"
-        android:layout_marginLeft="@dimen/_100sdp"/>
+        android:gravity="center"/>
     <TextView
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_30sdp"
@@ -49,7 +46,7 @@
         android:textSize="@dimen/_18sdp"
         android:layout_below="@id/alamatmakanan"
         android:id="@+id/hargamakanan"
-        android:layout_marginLeft="@dimen/_60sdp"
+        android:layout_marginStart="@dimen/_60sdp"
         android:textAlignment="center"/>
     <Button
         android:layout_width="@dimen/_80sdp"
@@ -65,7 +62,7 @@
         android:layout_height="@dimen/_1sdp"
         android:background="@color/black"
         android:layout_below="@id/tambahmakanan"
-        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         />
 
 </RelativeLayout>
