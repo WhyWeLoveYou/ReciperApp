@@ -14,7 +14,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.ActivityProfileBinding;
 import com.example.myapplication.databinding.ProfileBinding;
 import com.example.myapplication.screen.fragment.HomeFragment;
 import com.example.myapplication.screen.fragment.ProfileFragment;
