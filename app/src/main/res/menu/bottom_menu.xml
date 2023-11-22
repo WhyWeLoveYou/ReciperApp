@@ -10,5 +10,6 @@
         android:title="Receipt" />
     <item
         android:id="@+id/profile"
+        android:icon="@drawable/profile_vector"
         android:title="Profile" />
 </menu>

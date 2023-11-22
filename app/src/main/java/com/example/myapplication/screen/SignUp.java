@@ -55,6 +55,7 @@ public class SignUp extends AppCompatActivity {
         });
         binding.ButtonLogin.setOnClickListener(v -> {
             if (validator()) {
+                showToast("Mohon jangan tekan 2 kali dan tunggu sebentar");
                 CreateUser();
             }
         });
@@ -99,12 +100,11 @@ public class SignUp extends AppCompatActivity {
         String Email = binding.InputEmal.getText().toString();
         String Password = binding.InputPw.getText().toString();
         firebaseAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(task -> {
-            String Cuser = firebaseAuth.getUid();
             HashMap<String, Object> user = new HashMap<>();
             user.put("Nama", binding.InputName.getText().toString());
             user.put("Email", binding.InputEmal.getText().toString());
             user.put("Image", encodedImage);
-            db.collection("users").document(Cuser).set(user).addOnCompleteListener(
+            db.collection("users").document(Email).set(user).addOnCompleteListener(
                     documentReference -> {
                         showToast("Berhasil");
                         Intent intent = new Intent(this, Profile.class);

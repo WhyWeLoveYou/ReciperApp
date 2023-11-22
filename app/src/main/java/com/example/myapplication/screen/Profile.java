@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.ActivityProfileBinding;
 import com.example.myapplication.databinding.ProfileBinding;
 import com.example.myapplication.screen.fragment.HomeFragment;
 import com.example.myapplication.screen.fragment.ProfileFragment;
@@ -21,8 +22,10 @@ import com.example.myapplication.screen.fragment.ReceiptFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.checkerframework.checker.units.qual.C;
 
@@ -31,6 +34,7 @@ public class Profile extends AppCompatActivity {
     private ProfileBinding binding;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth auth;
+    private static final String TAG = "MyActivity";
 
 
     @Override
@@ -39,11 +43,11 @@ public class Profile extends AppCompatActivity {
         binding = ProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         listener();
         getUserDetail();
+        replaceFragment(new ProfileFragment());
 
         binding.bottomAppBar.setOnMenuItemClickListener( item -> {
 
@@ -51,12 +55,15 @@ public class Profile extends AppCompatActivity {
 
                 case R.id.home:
                     replaceFragment(new HomeFragment());
+                    Intent intent = new Intent(this, MainScreen.class);
+                    startActivity(intent);
                     break;
                 case R.id.receipt:
                     replaceFragment(new ReceiptFragment());
                     break;
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
+                    showToast("Kamu sudah di profile");
                     break;
                 default:
                     break;
@@ -81,20 +88,19 @@ public class Profile extends AppCompatActivity {
     }
 
     private void listener() {
-        binding.ImgBack.setOnClickListener(v -> {
-            //buat ke home
-            showToast("Bentar");
-        });
         binding.Bsimaaao.setOnClickListener(v -> {
-            //buat ke update
-            showToast("Bentar");
+            auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            showToast("Berhasil Log Out");
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 
     private void getUserDetail() {
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            String Cuser = auth.getCurrentUser().getUid();
+            String Cuser = auth.getCurrentUser().getEmail();
             firebaseFirestore.collection("users").document(Cuser).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -111,6 +117,11 @@ public class Profile extends AppCompatActivity {
                                 }
                             }
                         }
+                    })
+                    .addOnFailureListener(task -> {
+                        FirebaseFirestoreException e = (FirebaseFirestoreException ) task.getCause();
+                        Toast.makeText(this, "Errorn: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Errorn: "+e.getMessage());
                     });
         } else {
             showToast("ntah");
