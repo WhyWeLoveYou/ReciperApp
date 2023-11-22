@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             validator();
         });
         binding.CreateAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, SignUp.class);
+            Intent intent = new Intent(LoginActivity.this, Profile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
