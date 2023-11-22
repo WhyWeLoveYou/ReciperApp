@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -21,8 +22,10 @@ import com.example.myapplication.screen.fragment.ReceiptFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.checkerframework.checker.units.qual.C;
 
@@ -31,6 +34,7 @@ public class Profile extends AppCompatActivity {
     private ProfileBinding binding;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth auth;
+    private static final String TAG = "MyActivity";
 
 
     @Override
@@ -111,6 +115,11 @@ public class Profile extends AppCompatActivity {
                                 }
                             }
                         }
+                    })
+                    .addOnFailureListener(task -> {
+                        FirebaseFirestoreException e = (FirebaseFirestoreException ) task.getCause();
+                        Toast.makeText(this, "Errorn: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Errorn: "+e.getMessage());
                     });
         } else {
             showToast("ntah");
