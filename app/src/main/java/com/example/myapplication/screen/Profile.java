@@ -64,7 +64,6 @@ public class Profile extends AppCompatActivity {
                     break;
                 default:
                     break;
-
             }
 
             return true;
