@@ -9,19 +9,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:text="@string/receipt"
         android:textSize="@dimen/_20ssp"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0.50sp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="#949494"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_60sdp">
+
         <TextView
             android:id="@+id/textView_RecommendationReceipt"
             android:layout_width="match_parent"
@@ -31,6 +36,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/recommendation_receipt"
+            android:textSize="@dimen/_11sdp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
@@ -38,9 +44,9 @@
             android:id="@+id/recyclerView_RecommendationReceipt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:orientation="horizontal"
             android:scrollbars="horizontal"/>
     </RelativeLayout>
