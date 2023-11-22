@@ -63,4 +63,40 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+    public class item {
+
+        String namaMakanan;
+        int hargaMakanan;
+        int image;
+
+        public item(String namamMakanan, int hargaMakanan, int image) {
+            this.namaMakanan = namamMakanan;
+            this.hargaMakanan = hargaMakanan;
+            this.image = image;
+        }
+
+        public String getNamamMakanan() {
+            return namaMakanan;
+        }
+
+        public void setNamamMakanan(String namamMakanan) {
+            this.namaMakanan = namamMakanan;
+        }
+
+        public int getHargaMakanan() {
+            return hargaMakanan;
+        }
+
+        public void setHargaMakanan(int hargaMakanan) {
+            this.hargaMakanan = hargaMakanan;
+        }
+
+        public int getImage() {
+            return image;
+        }
+
+        public void setImage(int image) {
+            this.image =image;
+       }
+    }
 }
