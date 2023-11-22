@@ -2,6 +2,7 @@ package com.example.myapplication.screen.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,5 +19,6 @@ public class ReceiptFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_receipt, container, false);
+
     }
 }
