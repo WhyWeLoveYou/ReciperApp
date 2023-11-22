@@ -52,7 +52,6 @@ public class CartActivity extends AppCompatActivity {
         binding.ImgBack.setOnClickListener(view -> {
             Intent val = new Intent(this, MainScreen.class);
             startActivity(val);
-            finish();
         });
 
         db.collection("users").document(Cemail).collection("item").get()
@@ -61,6 +60,7 @@ public class CartActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             binding.progressB.setVisibility(View.GONE);
+                            binding.cartRv.setVisibility(View.VISIBLE);
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
                                 cartitem c = d.toObject(cartitem.class);
