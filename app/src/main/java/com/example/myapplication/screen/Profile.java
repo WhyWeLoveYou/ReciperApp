@@ -43,11 +43,11 @@ public class Profile extends AppCompatActivity {
         binding = ProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         listener();
         getUserDetail();
+        replaceFragment(new ProfileFragment());
 
         binding.bottomAppBar.setOnMenuItemClickListener( item -> {
 
@@ -61,6 +61,7 @@ public class Profile extends AppCompatActivity {
                     break;
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
+                    showToast("Kamu sudah di profile");
                     break;
                 default:
                     break;
@@ -85,10 +86,6 @@ public class Profile extends AppCompatActivity {
     }
 
     private void listener() {
-        binding.ImgBack.setOnClickListener(v -> {
-            //buat ke home
-            showToast("Bentar");
-        });
         binding.Bsimaaao.setOnClickListener(v -> {
             auth = FirebaseAuth.getInstance();
             auth.signOut();
