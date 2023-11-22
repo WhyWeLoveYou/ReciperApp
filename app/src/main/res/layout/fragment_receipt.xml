@@ -7,25 +7,42 @@
     tools:context=".screen.fragment.ReceiptFragment">
 
     <TextView
-        android:id="@+id/textView_RecommendationReceipt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:text="@string/recommendation_receipt"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:text="@string/receipt"
+        android:textSize="@dimen/_20ssp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_RecommendationReceipt"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_28sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_13sdp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"/>
+        android:layout_marginTop="@dimen/_60sdp">
+        <TextView
+            android:id="@+id/textView_RecommendationReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/recommendation_receipt"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_RecommendationReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_28sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"/>
+    </RelativeLayout>
 
 </FrameLayout>
