@@ -53,6 +53,7 @@
         android:layout_marginTop="@dimen/_42sdp"
         android:backgroundTint="@color/kuningnigga"
         android:onClick="Tambah"
+        android:id="@+id/tambahmakanan"
         android:text="Tambah"
         android:textColor="@color/black" />
 
