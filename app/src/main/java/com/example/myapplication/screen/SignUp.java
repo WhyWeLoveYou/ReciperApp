@@ -55,6 +55,7 @@ public class SignUp extends AppCompatActivity {
         });
         binding.ButtonLogin.setOnClickListener(v -> {
             if (validator()) {
+                showToast("Mohon jangan tekan 2 kali dan tunggu sebentar");
                 CreateUser();
             }
         });
