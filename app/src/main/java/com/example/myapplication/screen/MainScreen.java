@@ -37,7 +37,6 @@ public class MainScreen extends AppCompatActivity {
         binding.BnewChat.setOnClickListener(view -> {
             Intent val = new Intent(this, CartActivity.class);
             startActivity(val);
-            finish();
         });
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
