@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.checkerframework.checker.units.qual.C;
+
 public class Profile extends AppCompatActivity {
 
     private ProfileBinding binding;
@@ -50,26 +52,28 @@ public class Profile extends AppCompatActivity {
     }
 
     private void getUserDetail() {
-        String Cuser = auth.getCurrentUser().toString();
-        firebaseFirestore.collection("users").document(Cuser).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot documentSnapshot = task.getResult();
-                            if (documentSnapshot != null && documentSnapshot.exists()) {
-                                Bitmap bitmapnya = decodeImg(documentSnapshot.getString("Image").getBytes());
-                                binding.InputEmal.setText(documentSnapshot.getString("Nama"));
-                                binding.imageProfile.setImageBitmap(bitmapnya);
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            String Cuser = auth.getCurrentUser().getUid();
+            firebaseFirestore.collection("users").document(Cuser).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                if (documentSnapshot != null && documentSnapshot.exists()) {
+                                    String bytea = documentSnapshot.getString("Image");
+                                    byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
+                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                    binding.InputEmal.setText(documentSnapshot.getString("Email"));
+                                    binding.Inputneme.setText(documentSnapshot.getString("Nama"));
+                                    binding.imageProfile.setImageBitmap(bitmap);
+                                }
                             }
                         }
-                    }
-                });
-    }
-
-    private Bitmap decodeImg(byte[] bytes) {
-        byte[] bytea = Base64.decode(bytes, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytea, 0, bytes.length);
-        return bitmap;
+                    });
+        } else {
+            showToast("ntah");
+        }
     }
 }
