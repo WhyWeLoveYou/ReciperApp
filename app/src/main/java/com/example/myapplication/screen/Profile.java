@@ -55,6 +55,8 @@ public class Profile extends AppCompatActivity {
 
                 case R.id.home:
                     replaceFragment(new HomeFragment());
+                    Intent intent = new Intent(this, MainScreen.class);
+                    startActivity(intent);
                     break;
                 case R.id.receipt:
                     replaceFragment(new ReceiptFragment());
