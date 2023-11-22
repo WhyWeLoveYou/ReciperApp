@@ -29,6 +29,7 @@ public class MainScreen extends AppCompatActivity {
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+        binding.bottomAppBar.setBackground(null);
 
         binding.bottomAppBar.setOnMenuItemClickListener( item -> {
             switch (item.getItemId()){

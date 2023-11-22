@@ -15,18 +15,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_anchor="@id/frameLayout"
+        app:layout_anchorGravity="center">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/BnewChat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/BnewChat"
             android:layout_marginEnd="@dimen/_50sdp"
             android:layout_marginRight="@dimen/_24sdp"
             android:layout_marginBottom="@dimen/_75sdp"
+            android:backgroundTint="@color/primary"
             android:contentDescription="@string/app_name"
             android:src="@drawable/cart_vector"
-            android:backgroundTint="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white" />
