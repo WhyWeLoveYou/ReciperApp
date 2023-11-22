@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_centerVertical="true"
     android:layout_marginTop="10dp"
     android:orientation="vertical">
 
@@ -12,8 +11,7 @@
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_70sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:Layout_centervertical="true" />
+        android:layout_marginRight="@dimen/_20sdp" />
 
     <TextView
         android:id="@+id/namamakanan"
