@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -89,8 +90,11 @@ public class Profile extends AppCompatActivity {
             showToast("Bentar");
         });
         binding.Bsimaaao.setOnClickListener(v -> {
-            //buat ke update
-            showToast("Bentar");
+            auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            showToast("Berhasil Log Out");
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 
