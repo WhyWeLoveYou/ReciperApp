@@ -1,10 +1,16 @@
 package com.example.myapplication.screen.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> {
@@ -29,6 +37,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private Context context;
     private FirebaseAuth auth;
     private FirebaseFirestore firebaseFirestore;
+    private String itunya;
 
     public HfoodAdapter(ArrayList<itemTambahM> coursesArrayList, Context context) {
         this.MitemArrayList = coursesArrayList;
@@ -46,16 +55,38 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.namamakanan.setText(Mitem.getNamaMakanan());
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
+        if (Mitem.getGambar() == null) {
+            holder.imageview.setImageResource(R.drawable.photo);
+            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.photo);
+            itunya =  encodeImage(bm);
+        } else {
+            String bytea = Mitem.getGambar();
+            byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            holder.imageview.setImageBitmap(bitmap);
+            itunya =  Mitem.getGambar();
+        }
+
         holder.tambahmakanan.setOnClickListener(v -> {
             Toast.makeText(context.getApplicationContext(), Mitem.getNamaMakanan(), Toast.LENGTH_SHORT);
-            addDataToFirestore(Mitem.getNamaMakanan(), Mitem.getAlamat(), Mitem.getHarga());
+            addDataToFirestore(Mitem.getNamaMakanan(), Mitem.getAlamat(), Mitem.getHarga(), itunya);
         });
     }
 
-    private void addDataToFirestore(String NamaMakanan,String Alamat,String Harga) {
+    private String encodeImage(Bitmap bitmap) {
+        int previewW = 150;
+        int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private void addDataToFirestore(String NamaMakanan,String Alamat,String Harga, String Gambar) {
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga);
+        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar);
         String email = auth.getCurrentUser().getEmail();
 
         firebaseFirestore.collection("users").document(email).collection("item")
@@ -76,6 +107,11 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         });
     }
 
+    private void decodeImg(String ya) {
+        byte[] bytes = Base64.decode(ya, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
     @Override
     public int getItemCount() {
         return MitemArrayList.size();
@@ -86,13 +122,14 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         private final TextView alamatmakanan;
         private final TextView hargamakanan;
         private final Button tambahmakanan;
+        private final ImageView imageview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // initializing our text views.
             namamakanan = itemView.findViewById(R.id.namamakanan);
             alamatmakanan = itemView.findViewById(R.id.alamatmakanan);
             hargamakanan = itemView.findViewById(R.id.hargamakanan);
+            imageview = itemView.findViewById(R.id.imageview);
             tambahmakanan = itemView.findViewById(R.id.tambahmakanan);
         }
     }

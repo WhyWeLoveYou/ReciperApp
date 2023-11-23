@@ -69,14 +69,4 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             imageView = itemView.findViewById(R.id.imageView);
         }
     }
-
-    private String encodeImage(Bitmap bitmap) {
-        int previewW = 150;
-        int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
-        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(bytes, Base64.DEFAULT);
-    }
 }
