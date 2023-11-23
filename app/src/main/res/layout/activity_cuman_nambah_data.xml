@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
-    android:padding="@dimen/_24sdp"
+    android:padding="@dimen/_10sdp"
     android:scrollbars="none"
     tools:context=".helper.CumanNambahData">
 
@@ -129,7 +129,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:id="@+id/ButtonLogin"
                 android:text="Tambah"
                 android:textColor="@color/white"
