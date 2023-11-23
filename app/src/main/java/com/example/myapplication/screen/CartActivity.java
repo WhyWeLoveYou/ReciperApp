@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -69,7 +70,10 @@ public class CartActivity extends AppCompatActivity {
                                 cartArrayList.add(c);
                             }
 
-                            Button button = findViewById(R.id.im);
+                            ImageView deleteButton = findViewById(R.id.imageViewDelete);
+                            deleteButton.setOnClickListener(v -> {
+
+                            });
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
                             binding.progressB.setVisibility(View.GONE);
