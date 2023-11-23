@@ -44,12 +44,12 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:gravity="left|center"
             android:importantForAutofill="no"
             android:text="Nama"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/_19ssp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_13ssp" />
 
         <TextView
             android:id="@+id/Alamat"
@@ -58,6 +58,7 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_70sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:text="Email"
             android:gravity="left"
             android:importantForAutofill="no"
@@ -71,6 +72,8 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_100sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:text="Detail"
             android:gravity="left"
             android:importantForAutofill="no"
