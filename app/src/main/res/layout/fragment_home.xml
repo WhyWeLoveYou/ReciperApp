@@ -97,7 +97,7 @@
                 android:id="@+id/search_bar"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:textAlignment="center"
+                android:paddingStart="@dimen/_10sdp"
                 android:textSize="@dimen/_10sdp"
                 android:hint="Search Location"
                 android:background="@drawable/background_input"/>
