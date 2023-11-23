@@ -1,6 +1,7 @@
 package com.example.myapplication.helper;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -21,11 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.ByteArrayOutputStream;
 
 public class cumanambahimg {
-    private static Context context;
-    private FirebaseAuth auth;
-    FirebaseFirestore firebaseFirestore;
-    public void main(String[] args) {
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.makanan1);
+    private static FirebaseAuth auth;
+    static FirebaseFirestore firebaseFirestore;
+
+
+
+    public static void main(String[] args) {
+        Bitmap bm = BitmapFactory.decodeFile("../res/drawable/makanan1.jpg");
         String itunya =  encodeImage(bm);
         byte[] bytes = Base64.decode(itunya, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -33,7 +36,7 @@ public class cumanambahimg {
         addDataToFirestore(itunya);
     }
 
-    private String encodeImage(Bitmap bitmap) {
+    private static String encodeImage(Bitmap bitmap) {
         int previewW = 150;
         int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
@@ -43,7 +46,7 @@ public class cumanambahimg {
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-    private void addDataToFirestore(String Gambar) {
+    private static void addDataToFirestore(String Gambar) {
         String nMakan = "Kepiting Jawa";
         String alamat = "Pelabuhan Merapi";
         String hrga = "20.000";
