@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.database.itemTambahM;
 import com.example.myapplication.databinding.ActivityCumanNambahDataBinding;
+import com.example.myapplication.screen.MainScreen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +52,15 @@ public class CumanNambahData extends AppCompatActivity {
         binding.ButtonLogin.setOnClickListener(v -> {
             if (validator()) {
                 addDataToFirestore(encodedImage);
+            }
+        });
+
+        binding.ImgBack.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            } else {
+                finish();
             }
         });
     }
