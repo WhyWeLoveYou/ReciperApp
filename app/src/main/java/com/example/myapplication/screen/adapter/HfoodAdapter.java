@@ -35,7 +35,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private String itunya;
     private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
             R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
-            R.drawable.makanan8, R.drawable.makanan9, R.drawable, makanan10};
+            R.drawable.makanan8, R.drawable.makanan9, R.drawable.makanan10};
 
     public HfoodAdapter(ArrayList<itemTambahM> coursesArrayList, Context context) {
         this.MitemArrayList = coursesArrayList;
@@ -55,10 +55,13 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
             int i;
-            for(i=0; i<10;i++) {
-                holder.imageview.setImageResource(image[i]);
+            for(i=0; i<=10;i++) {
                 Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
                 itunya =  encodeImage(bm);
+                String bytea = itunya;
+                byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                holder.imageview.setImageBitmap(bitmap);
             };
         } else {
             String bytea = Mitem.getGambar();
@@ -94,7 +97,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
                 .add(ITEM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(context.getApplicationContext(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(), "Belanjaanmu berhasil ditambahkan", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
