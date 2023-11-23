@@ -1,70 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerVertical="true">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView_RecommendationReceipt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:text="@string/kategori"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20sdp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_RecommendationReceipt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_RecommendationReceipt"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal" />
-
-    <TextView
-        android:id="@+id/textView_RecommendationReceip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recyclerView_RecommendationReceipt"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:text="@string/recommendation"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20sdp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_RecommendationReceip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_RecommendationReceip"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:orientation="vertical"
-        android:scrollbars="vertical" />
-
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/textView_RecommendationReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/kategori"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
 
-        <ProgressBar
-            android:id="@+id/progressB"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center" />
-    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_RecommendationReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_RecommendationReceipt"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
+
+        <TextView
+            android:id="@+id/textView_RecommendationReceip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView_RecommendationReceipt"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/recommendation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_RecommendationReceip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_RecommendationReceip"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:scrollbars="vertical" />
 
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ProgressBar
+                android:id="@+id/progressB"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/recyclerView_RecommendationReceip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/textView_Search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15ssp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/search"/>
+
+            <EditText
+                android:layout_below="@+id/textView_Search"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/search_bar"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:textAlignment="center"
+                android:textSize="@dimen/_10sdp"
+                android:hint="Search Location"
+                android:background="@drawable/background_input"/>
+
+            <Button
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_below="@+id/textView_Search"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/search_bar"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/_8ssp"
+                android:text="Search"
+                android:layout_height="@dimen/_30sdp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</ScrollView>
