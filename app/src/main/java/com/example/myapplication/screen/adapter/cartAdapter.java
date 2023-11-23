@@ -28,6 +28,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
     private ArrayList<cartitem> cartitemArrayList;
     private Context context;
+    private OnItemDeletedListener onItemDeletedListener;
 
     public cartAdapter(ArrayList<cartitem> coursesArrayList, Context context) {
         this.cartitemArrayList = coursesArrayList;
@@ -81,16 +82,39 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             firebaseFirestore = FirebaseFirestore.getInstance();
 
             imageButton.setOnClickListener(v -> {
-                String email = auth.getCurrentUser().getEmail();
-                String documentId = cartitemArrayList.get(getAdapterPosition()).getDocumentId();
-                firebaseFirestore.collection("users").document(email).collection("item").document(documentId)
-                        .delete().addOnSuccessListener(task -> {
-                            Toast.makeText(context.getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
-                        })
-                        .addOnFailureListener(task -> {
-                            Toast.makeText(context.getApplicationContext(), "Gagl", Toast.LENGTH_SHORT).show();
-                        });
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && position < cartitemArrayList.size()) {
+                    if (auth.getCurrentUser() != null) {
+                        String email = auth.getCurrentUser().getEmail();
+                        String documentId = cartitemArrayList.get(position).getDocumentId();
+                        if (documentId != null) {
+                            firebaseFirestore.collection("users").document(email).collection("item").document(documentId)
+                                    .delete().addOnSuccessListener(task -> {
+                                        Toast.makeText(context.getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                                        if (onItemDeletedListener != null) {
+                                            onItemDeletedListener.onItemDeleted(getAdapterPosition());
+                                        }
+                                    })
+                                    .addOnFailureListener(task -> {
+                                        Toast.makeText(context.getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            Toast.makeText(context.getApplicationContext(), "Document ID is null", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(context.getApplicationContext(), "User not logged in", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(context.getApplicationContext(), "Invalid position", Toast.LENGTH_SHORT).show();
+                }
             });
         }
+    }
+    public interface OnItemDeletedListener {
+        void onItemDeleted(int position);
+    }
+
+    public void setOnItemDeletedListener(OnItemDeletedListener listener) {
+        this.onItemDeletedListener = listener;
     }
 }

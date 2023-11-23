@@ -30,7 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements cartAdapter.OnItemDeletedListener {
 
     private ArrayList<cartitem> cartArrayList;
     private FirebaseFirestore db;
@@ -50,6 +50,7 @@ public class CartActivity extends AppCompatActivity {
         binding.cartRv.setLayoutManager(new LinearLayoutManager(this));
 
         cartRVAdapter = new cartAdapter(cartArrayList, this);
+        cartRVAdapter.setOnItemDeletedListener(this);
         binding.cartRv.setAdapter(cartRVAdapter);
         String Cemail = auth.getCurrentUser().getEmail();
 
@@ -69,7 +70,10 @@ public class CartActivity extends AppCompatActivity {
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
                                 cartitem c = d.toObject(cartitem.class);
-                                cartArrayList.add(c);
+                                if (c != null) {
+                                    c.setDocumentId(d.getId());
+                                    cartArrayList.add(c);
+                                }
                             }
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
@@ -86,23 +90,11 @@ public class CartActivity extends AppCompatActivity {
                 });
     }
 
-    private void deleteDataFirebase() {
-        String documentId = new cartitem().getDocumentId();
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        if (auth.getCurrentUser() == null) {
-            String userEmail = auth.getCurrentUser().getEmail();
-
-            db.collection("users").document(userEmail).collection("item")
-                    .document(documentId).delete()
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(getApplicationContext(), "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                    });
-        } else {
-            Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-        }
+    @Override
+    public void onItemDeleted(int position) {
+        // Remove the item from the dataset and notify the adapter
+        cartArrayList.remove(position);
+        cartRVAdapter.notifyItemRemoved(position);
+        cartRVAdapter.notifyItemRangeChanged(position, cartArrayList.size());
     }
     }
