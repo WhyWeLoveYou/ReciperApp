@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -103,14 +103,13 @@
                 android:background="@drawable/background_input"/>
 
             <Button
-                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_below="@+id/textView_Search"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_toRightOf="@+id/search_bar"
                 android:layout_width="wrap_content"
-                android:textSize="@dimen/_8ssp"
-                android:text="Search"
+                android:text="@string/search"
                 android:layout_height="@dimen/_30sdp"/>
 
         </RelativeLayout>
