@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void listener() {
         binding.ButtonLogin.setOnClickListener(v -> {
+            showToast("Mohon jangan tekan 2 kali dan tunggu sebentar");
             validator();
         });
         binding.CreateAccount.setOnClickListener(v -> {
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.ForgotPw.setOnClickListener(v -> {
             showToast("Still in progress");
         });
+
     }
 
     private void userLogin() {
@@ -75,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Error - " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void validator() {

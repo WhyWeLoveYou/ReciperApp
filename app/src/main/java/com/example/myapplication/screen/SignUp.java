@@ -29,6 +29,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -148,6 +150,19 @@ public class SignUp extends AppCompatActivity {
             showToast("Password kurang dari 6");
             return false;
         }
+        if (!validateEmailAddress(Email)) {
+        showToast("Invalid email");
+        return false;
+    }
         return true;
+}
+
+    public Boolean validateEmailAddress(String emailAddress) {
+        Pattern regexPattern = Pattern.compile("^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$");
+        Matcher regMatcher   = regexPattern.matcher(emailAddress);
+        if(regMatcher.matches()) {
+            return true;
+        }
+        return false;
     }
 }

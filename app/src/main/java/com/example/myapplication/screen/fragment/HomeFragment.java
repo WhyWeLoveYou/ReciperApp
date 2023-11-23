@@ -2,108 +2,84 @@ package com.example.myapplication.screen.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.database.cartitem;
+import com.example.myapplication.database.itemTambahM;
+import com.example.myapplication.databinding.FragmentHomeBinding;
+import com.example.myapplication.databinding.ProfileBinding;
+import com.example.myapplication.screen.adapter.HfoodAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private FirebaseAuth auth;
+    private FirebaseFirestore firebaseFirestore;
+    private ArrayList<itemTambahM> makananArrayList;
+    private FragmentHomeBinding binding;
+    private HfoodAdapter itemRvAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
-    public class item {
 
-        String namaMakanan, tambahMakanan;
-        int hargaMakanan;
-        int image;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getItem();
+    }
 
-        public item(String namamMakanan, int hargaMakanan, int image) {
-            this.namaMakanan = namamMakanan;
-            this.hargaMakanan = hargaMakanan;
-            this.image = image;
-        }
+    public void getItem() {
+        auth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        makananArrayList = new ArrayList<itemTambahM>();
+        binding.recyclerViewRecommendationReceipt.setHasFixedSize(true);
+        binding.recyclerViewRecommendationReceipt.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        public String getNamamMakanan() {
-            return namaMakanan;
-        }
+        itemRvAdapter = new HfoodAdapter(makananArrayList, getContext());
+        binding.recyclerViewRecommendationReceipt.setAdapter(itemRvAdapter);
 
-        public void setNamamMakanan(String namamMakanan) {
-            this.namaMakanan = namamMakanan;
-        }
-
-        public String getTambahMakanan() {
-            return tambahMakanan;
-        }
-        public void setTambahMakanan(String tambahMakanan) {
-            this.tambahMakanan = tambahMakanan;
-        }
-
-        public int getHargaMakanan() {
-            return hargaMakanan;
-        }
-
-        public void setHargaMakanan(int hargaMakanan) {
-            this.hargaMakanan = hargaMakanan;
-        }
-
-        public int getImage() {
-            return image;
-        }
-
-        public void setImage(int image) {
-            this.image =image;
-       }
+        firebaseFirestore.collection("item_penjualan").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            binding.progressB.setVisibility(View.GONE);
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                itemTambahM c = d.toObject(itemTambahM.class);
+                                makananArrayList.add(c);
+                            }
+                            itemRvAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getContext().getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext().getApplicationContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
