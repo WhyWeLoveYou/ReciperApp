@@ -1,17 +1,18 @@
 package com.example.myapplication.database;
 
 public class itemTambahM {
-    private String NamaMakanan, Alamat, Harga, Gambar;
+    private String NamaMakanan, Alamat, Harga, Gambar, documentId;
 
     public itemTambahM() {
 
     }
 
-    public itemTambahM(String NamaMakanan,String Alamat,String Harga, String Gambar) {
+    public itemTambahM(String NamaMakanan, String Alamat,String Harga, String Gambar, String documentId) {
         this.Gambar = Gambar;
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
         this.Harga = Harga;
+        this.documentId = documentId;
     }
 
     public String getNamaMakanan() {
@@ -43,5 +44,12 @@ public class itemTambahM {
     }
     public void setGambar(String Gambar) {
         this.Gambar = Gambar;
+    }
+
+    public String getId() {
+        return documentId;
+    }
+    public void setId(String id) {
+        this.documentId = documentId;
     }
 }

@@ -1,17 +1,23 @@
 package com.example.myapplication.database;
 
-public class cartitem {
+import com.google.firebase.database.Exclude;
 
-    private String NamaMakanan, Alamat, Harga, Gambar;
+import java.io.Serializable;
+
+public class cartitem{
+
+
+    private String NamaMakanan, Alamat, Harga, Gambar, documentId;
 
     public cartitem() {
 
     }
-    public cartitem(String NamaMakanan, String Alamat, String Harga, String Gambar) {
+    public cartitem(String NamaMakanan, String Alamat, String Harga, String Gambar, String documentId) {
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
         this.Harga = Harga;
         this.Gambar = Gambar;
+        this.documentId = documentId;
     }
 
     public String getNamaMakanan() {
@@ -43,5 +49,13 @@ public class cartitem {
     }
     public void setGambar(String Gambar) {
         this.Gambar = Gambar;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getDocumentId() {
+        return documentId;
     }
 }
