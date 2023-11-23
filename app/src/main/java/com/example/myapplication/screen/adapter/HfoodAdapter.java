@@ -85,13 +85,10 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar, documentId);
         String email = auth.getCurrentUser().getEmail();
 
-        firebaseFirestore.collection("users").document(email).collection("item")
-                .add(ITEM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(context.getApplicationContext(), "Belanjaanmu berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        firebaseFirestore.collection("users").document(email).collection("item").document(documentId)
+                .set(ITEM).addOnSuccessListener(task -> {
+            Toast.makeText(context.getApplicationContext(), "Berhasil Menambahkan ke Cart", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // this method is called when the data addition process is failed.
