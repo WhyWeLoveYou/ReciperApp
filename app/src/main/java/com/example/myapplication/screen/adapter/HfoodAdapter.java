@@ -54,12 +54,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            int i;
-            for(i=0; i<10;i++) {
-                holder.imageview.setImageResource(image[i]);
-                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
-                itunya =  encodeImage(bm);
-            };
+            holder.imageview.setImageResource(R.drawable.makanan1);
         } else {
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
@@ -94,7 +89,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
                 .add(ITEM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(context.getApplicationContext(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(), "Belanjaanmu berhasil ditambahkan", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.database.cartitem;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
@@ -49,7 +50,11 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         if (cartItem.getGambar() == null) {
             int i;
             for(i=0; i<10;i++) {
-                holder.imageView.setImageResource(image[i]);
+                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
+                String itunya =  encodeImage(bm);
+                byte[] bytes = Base64.decode(itunya, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                holder.imageView.setImageBitmap(bitmap);
             }
         } else {
             String bytea = cartItem.getGambar();
@@ -57,6 +62,16 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             holder.imageView.setImageBitmap(bitmap);
         }
+    }
+
+    private String encodeImage(Bitmap bitmap) {
+        int previewW = 150;
+        int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
     @Override
