@@ -69,8 +69,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         firebaseFirestore.collection("users").document(auth.getCurrentUser().getEmail()).collection("item")
-                .document(documentId)
-                .delete()
+                .document(documentId).delete()
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
                 })
