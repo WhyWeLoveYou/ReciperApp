@@ -9,10 +9,6 @@
         android:icon="@drawable/receipt_vector"
         android:title="Receipt" />
     <item
-        android:id="@+id/about"
-        android:icon="@drawable/about_vector"
-        android:title="About" />
-    <item
         android:id="@+id/profile"
         android:icon="@drawable/profile_vector"
         android:title="Profile" />
