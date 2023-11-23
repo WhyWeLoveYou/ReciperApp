@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Details"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageProfile"
@@ -44,12 +44,13 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:gravity="left|center"
             android:importantForAutofill="no"
             android:text="Nama"
+            android:background="@drawable/round_outline_box"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/_19ssp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_13ssp" />
 
         <TextView
             android:id="@+id/Alamat"
@@ -58,9 +59,11 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_70sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:text="Email"
             android:gravity="left"
             android:importantForAutofill="no"
+            android:background="@drawable/round_outline_box"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp" />
 
@@ -71,6 +74,9 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_100sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:background="@drawable/round_outline_box"
             android:text="Detail"
             android:gravity="left"
             android:importantForAutofill="no"
@@ -124,7 +130,7 @@
         android:id="@+id/imageProfile"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="@dimen/_35sdp"
         android:background="@drawable/background_image"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
