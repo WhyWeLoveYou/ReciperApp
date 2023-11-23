@@ -22,6 +22,9 @@ import java.util.ArrayList;
 
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
+
+
+
     private ArrayList<cartitem> cartitemArrayList;
     private Context context;
     private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
