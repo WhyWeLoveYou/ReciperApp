@@ -54,15 +54,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            int i;
-            for(i=0; i<=10;i++) {
-                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
-                itunya =  encodeImage(bm);
-                String bytea = itunya;
-                byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                holder.imageview.setImageBitmap(bitmap);
-            };
+            holder.imageview.setImageResource(R.drawable.makanan1);
         } else {
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
