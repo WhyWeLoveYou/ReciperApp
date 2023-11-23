@@ -53,9 +53,9 @@ public class HomeFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         makananArrayList = new ArrayList<itemTambahM>();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewRecommendationReceipt.setHasFixedSize(true);
-        binding.recyclerViewRecommendationReceipt.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        binding.recyclerViewRecommendationReceipt.setLayoutManager(layoutManager);
         itemRvAdapter = new HfoodAdapter(makananArrayList, getContext());
         binding.recyclerViewRecommendationReceipt.setAdapter(itemRvAdapter);
 
