@@ -50,7 +50,6 @@ public class cumanambahimg {
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar);
-        String email = auth.getCurrentUser().getEmail();
 
         firebaseFirestore.collection("item_penjualan").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
