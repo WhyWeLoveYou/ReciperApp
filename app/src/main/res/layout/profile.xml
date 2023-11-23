@@ -83,6 +83,18 @@
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="@dimen/_70sdp"
+                android:id="@+id/Bsimaaaobt"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_horizontal"
+                android:text="Tambah"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_8sdp" />
+
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"

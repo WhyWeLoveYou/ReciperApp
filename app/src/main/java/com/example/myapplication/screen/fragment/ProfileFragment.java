@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ProfileBinding;
+import com.example.myapplication.helper.CumanNambahData;
 import com.example.myapplication.screen.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -58,6 +59,10 @@ public class ProfileFragment extends Fragment {
             auth.signOut();
             showToast("Berhasil Log Out");
             Intent intent = new Intent(requireContext(), LoginActivity.class);
+            startActivity(intent);
+        });
+        binding.Bsimaaaobt.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), CumanNambahData.class);
             startActivity(intent);
         });
     }
