@@ -65,17 +65,20 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
     }
 
     private void deleteDataFirebase(String documentId) {
-        auth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+        if (auth.getCurrentUser() == null) {
+            String userEmail = auth.getCurrentUser().getEmail();
 
-        firebaseFirestore.collection("users").document(auth.getCurrentUser().getEmail()).collection("item")
-                .document(documentId).delete()
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                });
+            firebaseFirestore.collection("users").document(userEmail).collection("item")
+                    .document(documentId).delete()
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -97,6 +100,8 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
             imageView = itemView.findViewById(R.id.imageView);
             imageButton = itemView.findViewById(R.id.imageViewDelete);
+            auth = FirebaseAuth.getInstance();
+            firebaseFirestore = FirebaseFirestore.getInstance();
         }
     }
 }
