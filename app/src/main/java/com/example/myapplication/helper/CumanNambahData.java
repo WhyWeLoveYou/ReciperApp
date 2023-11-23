@@ -43,6 +43,10 @@ public class CumanNambahData extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             pickImage.launch(intent);
         });
+
+        binding.ButtonLogin.setOnClickListener(v -> {
+            addDataToFirestore(encodedImage);
+        });
     }
 
     private String encodeImage(Bitmap bitmap) {
@@ -67,7 +71,6 @@ public class CumanNambahData extends AppCompatActivity {
                             binding.imageProfile.setImageBitmap(bitmap);
                             binding.addingImage.setVisibility(View.GONE);
                             encodedImage = encodeImage(bitmap);
-                            addDataToFirestore(encodedImage);
                         } catch (FileNotFoundException e) {
                             throw new RuntimeException(e);
                         }

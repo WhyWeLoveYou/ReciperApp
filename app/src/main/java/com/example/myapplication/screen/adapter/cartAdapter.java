@@ -48,14 +48,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         holder.textViewDesk.setText(cartItem.getAlamat());
         holder.textViewHarga.setText(cartItem.getHarga());
         if (cartItem.getGambar() == null) {
-            int i;
-            for(i=0; i<10;i++) {
-                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
-                String itunya =  encodeImage(bm);
-                byte[] bytes = Base64.decode(itunya, Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                holder.imageView.setImageBitmap(bitmap);
-            }
+            holder.imageView.setImageResource(R.drawable.makanan7);
         } else {
             String bytea = cartItem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);

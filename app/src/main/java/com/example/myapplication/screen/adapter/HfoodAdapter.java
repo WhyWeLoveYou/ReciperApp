@@ -54,7 +54,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            holder.imageview.setImageResource(R.drawable.makanan1);
+            holder.imageview.setImageResource(R.drawable.makanan7);
         } else {
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
