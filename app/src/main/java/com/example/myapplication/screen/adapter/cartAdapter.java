@@ -24,7 +24,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
     private Context context;
     Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
             R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
-            R.drawable.makanan8, R.drawable.makanan9, R.drawable, makanan10};
+            R.drawable.makanan8, R.drawable.makanan9, R.drawable.makanan10};
 
     public cartAdapter(ArrayList<cartitem> coursesArrayList, Context context) {
         this.cartitemArrayList = coursesArrayList;
