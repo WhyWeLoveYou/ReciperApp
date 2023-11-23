@@ -69,6 +69,7 @@ public class CartActivity extends AppCompatActivity {
                             }
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
+                            binding.progressB.setVisibility(View.GONE);
                             binding.textErrorMsg.setText("No data");
                             binding.textErrorMsg.setVisibility(View.VISIBLE);
                         }

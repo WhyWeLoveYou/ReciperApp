@@ -8,14 +8,18 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.cartitem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -27,9 +31,8 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
     private ArrayList<cartitem> cartitemArrayList;
     private Context context;
-    private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
-            R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
-            R.drawable.makanan8, R.drawable.makanan9, R.drawable.makanan10};
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth auth;
 
     public cartAdapter(ArrayList<cartitem> coursesArrayList, Context context) {
         this.cartitemArrayList = coursesArrayList;
@@ -48,30 +51,32 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         holder.textViewDesk.setText(cartItem.getAlamat());
         holder.textViewHarga.setText(cartItem.getHarga());
         if (cartItem.getGambar() == null) {
-            int i;
-            for(i=0; i<10;i++) {
-                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
-                String itunya =  encodeImage(bm);
-                byte[] bytes = Base64.decode(itunya, Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                holder.imageView.setImageBitmap(bitmap);
-            }
+            holder.imageView.setImageResource(R.drawable.makanan7);
         } else {
             String bytea = cartItem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             holder.imageView.setImageBitmap(bitmap);
         }
+
+        holder.imageButton.setOnClickListener(v -> {
+            deleteDataFirebase(cartItem.getDocumentId());
+        });
     }
 
-    private String encodeImage(Bitmap bitmap) {
-        int previewW = 150;
-        int previewH = bitmap.getHeight() * previewW / bitmap.getWidth();
-        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewW, previewH, false);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    private void deleteDataFirebase(String documentId) {
+        auth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        firebaseFirestore.collection("users").document(auth.getCurrentUser().getEmail()).collection("item")
+                .document(documentId)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                });
     }
 
     @Override
@@ -84,6 +89,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         private final TextView textViewDesk;
         private final TextView textViewHarga;
         private final ImageView imageView;
+        private final ImageButton imageButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +97,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             textViewDesk = itemView.findViewById(R.id.textViewDesk);
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
             imageView = itemView.findViewById(R.id.imageView);
+            imageButton = itemView.findViewById(R.id.imageViewDelete);
         }
     }
 }

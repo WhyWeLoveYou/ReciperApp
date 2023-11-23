@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> {
 
@@ -33,9 +34,6 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private FirebaseAuth auth;
     private FirebaseFirestore firebaseFirestore;
     private String itunya;
-    private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
-            R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
-            R.drawable.makanan8, R.drawable.makanan9, R.drawable.makanan10};
 
     public HfoodAdapter(ArrayList<itemTambahM> coursesArrayList, Context context) {
         this.MitemArrayList = coursesArrayList;
@@ -54,7 +52,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            holder.imageview.setImageResource(R.drawable.makanan1);
+            holder.imageview.setImageResource(R.drawable.makanan7);
         } else {
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
@@ -82,7 +80,9 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private void addDataToFirestore(String NamaMakanan,String Alamat,String Harga, String Gambar) {
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar);
+        UUID documentd = UUID.randomUUID();
+        String documentId = String.valueOf(documentd);
+        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar, documentId);
         String email = auth.getCurrentUser().getEmail();
 
         firebaseFirestore.collection("users").document(email).collection("item")
