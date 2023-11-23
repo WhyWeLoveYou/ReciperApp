@@ -82,7 +82,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         auth = FirebaseAuth.getInstance();
         UUID documentd = UUID.randomUUID();
         String documentId = String.valueOf(documentd);
-        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar, documentId);
+        itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar, documentId, null);
         String email = auth.getCurrentUser().getEmail();
 
         firebaseFirestore.collection("users").document(email).collection("item").document(documentId)

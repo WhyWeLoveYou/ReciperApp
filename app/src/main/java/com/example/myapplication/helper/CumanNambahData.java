@@ -48,7 +48,9 @@ public class CumanNambahData extends AppCompatActivity {
         });
 
         binding.ButtonLogin.setOnClickListener(v -> {
-            addDataToFirestore(encodedImage);
+            if (validator()) {
+                addDataToFirestore(encodedImage);
+            }
         });
     }
 
@@ -86,10 +88,11 @@ public class CumanNambahData extends AppCompatActivity {
         String nMakan = binding.InputName.getText().toString();
         String alamat = binding.InputEmal.getText().toString();
         String hrga = binding.InputPw.getText().toString();
+        String deskripsi = binding.description.getText().toString();
         UUID documentd = UUID.randomUUID();
         String documentId = String.valueOf(documentd);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar, documentId);
+        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar, documentId, deskripsi);
 
         firebaseFirestore.collection("item_penjualan").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -103,5 +106,25 @@ public class CumanNambahData extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Boolean validator() {
+        if (binding.InputEmal.getText().toString() == null) {
+            Toast.makeText(getApplicationContext(), "Tidak boleh ada satupun yang kosong", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (binding.InputName.getText().toString() == null) {
+            Toast.makeText(getApplicationContext(), "Tidak boleh ada satupun yang kosong", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (binding.description.getText().toString() == null) {
+            Toast.makeText(getApplicationContext(), "Tidak boleh ada satupun yang kosong", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (binding.InputPw.getText().toString() == null) {
+            Toast.makeText(getApplicationContext(), "Tidak boleh ada satupun yang kosong", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
