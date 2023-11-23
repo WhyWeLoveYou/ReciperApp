@@ -35,7 +35,7 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private String itunya;
     private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
             R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
-            R.drawable.makanan8, R.drawable.makanan9, R.drawable, makanan10};
+            R.drawable.makanan8, R.drawable.makanan9, R.drawable.makanan10};
 
     public HfoodAdapter(ArrayList<itemTambahM> coursesArrayList, Context context) {
         this.MitemArrayList = coursesArrayList;
