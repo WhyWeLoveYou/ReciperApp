@@ -39,7 +39,8 @@ public class allmenuAdapter extends RecyclerView.Adapter<allmenuAdapter.ViewHold
     @NonNull
     @Override
     public allmenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new allmenuAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view_tidur, parent, false));
+        View view = LayoutInflater.from(context).inflate(R.layout.item_view_tidur, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -55,14 +56,17 @@ public class allmenuAdapter extends RecyclerView.Adapter<allmenuAdapter.ViewHold
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            holder.imageview.setImageBitmap(bitmap);
-            itunya =  Mitem.getGambar();
-        }
+            if (bitmap != null) {
+                holder.imageview.setImageBitmap(bitmap);
+            } else {
+                holder.imageview.setImageResource(R.drawable.makanan7);
+            }
+    }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return MitemArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +80,7 @@ public class allmenuAdapter extends RecyclerView.Adapter<allmenuAdapter.ViewHold
             namamakanan = itemView.findViewById(R.id.namamakanan);
             alamatmakanan = itemView.findViewById(R.id.alamatmakanan);
             hargamakanan = itemView.findViewById(R.id.hargamakanan);
-            imageview = itemView.findViewById(R.id.imageView);
+            imageview = itemView.findViewById(R.id.imageview);
             relativeLayout = itemView.findViewById(R.id.apa);
 
 

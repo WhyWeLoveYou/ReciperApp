@@ -18,6 +18,7 @@ import com.example.myapplication.database.itemTambahM;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 import com.example.myapplication.databinding.ProfileBinding;
 import com.example.myapplication.screen.adapter.HfoodAdapter;
+import com.example.myapplication.screen.adapter.allmenuAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<itemTambahM> makananArrayList;
     private FragmentHomeBinding binding;
     private HfoodAdapter itemRvAdapter;
+    private allmenuAdapter itemRvAdapter2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +58,16 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewRecommendationReceipt.setHasFixedSize(true);
         binding.recyclerViewRecommendationReceipt.setLayoutManager(layoutManager);
+
+        //bawah
+        binding.recyclerViewRecommendationReceip.setHasFixedSize(true);
+        binding.recyclerViewRecommendationReceip.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //panggil
         itemRvAdapter = new HfoodAdapter(makananArrayList, getContext());
+        itemRvAdapter2 = new allmenuAdapter(makananArrayList, getContext());
         binding.recyclerViewRecommendationReceipt.setAdapter(itemRvAdapter);
+        binding.recyclerViewRecommendationReceip.setAdapter(itemRvAdapter2);
 
         firebaseFirestore.collection("item_penjualan").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -71,6 +81,7 @@ public class HomeFragment extends Fragment {
                                 makananArrayList.add(c);
                             }
                             itemRvAdapter.notifyDataSetChanged();
+                            itemRvAdapter2.notifyDataSetChanged();
                         } else {
                             Toast.makeText(getContext().getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
                         }

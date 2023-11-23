@@ -50,7 +50,7 @@
             android:id="@+id/recyclerView_RecommendationReceip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_RecommendationReceip"
+            android:layout_below="@id/textView_RecommendationReceip"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:orientation="vertical"
