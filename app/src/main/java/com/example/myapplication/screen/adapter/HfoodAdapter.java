@@ -3,8 +3,6 @@ package com.example.myapplication.screen.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.database.cartitem;
-import com.example.myapplication.database.itemMakanan;
 import com.example.myapplication.database.itemTambahM;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +24,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> {
@@ -56,8 +51,8 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            holder.imageview.setImageResource(R.drawable.photo);
-            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.photo);
+            holder.imageview.setImageResource(R.drawable.makanan2);
+            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.makanan2);
             itunya =  encodeImage(bm);
         } else {
             String bytea = Mitem.getGambar();
@@ -93,8 +88,6 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
                 .add(ITEM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                // after the data addition is successful
-                // we are displaying a success toast message.
                 Toast.makeText(context.getApplicationContext(), "Your Course has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {

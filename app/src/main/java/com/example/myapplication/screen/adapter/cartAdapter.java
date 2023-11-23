@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.database.cartitem;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
     private ArrayList<cartitem> cartitemArrayList;
     private Context context;
+    Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3};
 
     public cartAdapter(ArrayList<cartitem> coursesArrayList, Context context) {
         this.cartitemArrayList = coursesArrayList;
@@ -41,7 +41,10 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         holder.textViewDesk.setText(cartItem.getAlamat());
         holder.textViewHarga.setText(cartItem.getHarga());
         if (cartItem.getGambar() == null) {
-            holder.imageView.setImageResource(R.drawable.photo);
+            int i;
+            for(i=0; i<20;i++) {
+                holder.imageView.setImageResource();
+            }
         } else {
             String bytea = cartItem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
