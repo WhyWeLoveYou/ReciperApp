@@ -8,10 +8,10 @@ public class itemTambahM {
     }
 
     public itemTambahM(String NamaMakanan, String Alamat,String Harga, String Gambar, String documentId) {
-        this.Gambar = Gambar;
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
         this.Harga = Harga;
+        this.Gambar = Gambar;
         this.documentId = documentId;
     }
 

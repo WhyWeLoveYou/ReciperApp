@@ -91,8 +91,6 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // this method is called when the data addition process is failed.
-                // displaying a toast message when data addition is failed.
                 Toast.makeText(context.getApplicationContext(), "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
             }
         });

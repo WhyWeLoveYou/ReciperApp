@@ -83,7 +83,6 @@ public class CumanNambahData extends AppCompatActivity {
     );
 
     private void addDataToFirestore(String Gambar) {
-        auth = FirebaseAuth.getInstance();
         String nMakan = binding.InputName.getText().toString();
         String alamat = binding.InputEmal.getText().toString();
         String hrga = binding.InputPw.getText().toString();

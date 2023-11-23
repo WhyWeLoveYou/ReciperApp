@@ -12,7 +12,8 @@
         android:layout_height="@dimen/_70sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_20sdp" />
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
 
     <TextView
         android:layout_marginTop="@dimen/_5sdp"
@@ -55,12 +56,6 @@
         android:backgroundTint="@color/kuningnigga"
         android:text="Tambah"
         android:textColor="@color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:layout_marginTop="@dimen/_80sdp"
-        android:background="@color/black" />
 
 
 </RelativeLayout>

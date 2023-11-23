@@ -26,13 +26,8 @@ import java.util.ArrayList;
 
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
-
-
-
     private ArrayList<cartitem> cartitemArrayList;
     private Context context;
-    private FirebaseFirestore firebaseFirestore;
-    private FirebaseAuth auth;
 
     public cartAdapter(ArrayList<cartitem> coursesArrayList, Context context) {
         this.cartitemArrayList = coursesArrayList;
@@ -72,6 +67,9 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
         private final ImageView imageView;
         private final ImageButton imageButton;
 
+        private FirebaseFirestore firebaseFirestore;
+        private FirebaseAuth auth;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewMakanan = itemView.findViewById(R.id.textViewMakanan);
@@ -79,6 +77,20 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
             imageView = itemView.findViewById(R.id.imageView);
             imageButton = itemView.findViewById(R.id.imageViewDelete);
+            auth = FirebaseAuth.getInstance();
+            firebaseFirestore = FirebaseFirestore.getInstance();
+
+            imageButton.setOnClickListener(v -> {
+                String email = auth.getCurrentUser().getEmail();
+                String documentId = cartitemArrayList.get(getAdapterPosition()).getDocumentId();
+                firebaseFirestore.collection("users").document(email).collection("item").document(documentId)
+                        .delete().addOnSuccessListener(task -> {
+                            Toast.makeText(context.getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(task -> {
+                            Toast.makeText(context.getApplicationContext(), "Gagl", Toast.LENGTH_SHORT).show();
+                        });
+            });
         }
     }
 }
