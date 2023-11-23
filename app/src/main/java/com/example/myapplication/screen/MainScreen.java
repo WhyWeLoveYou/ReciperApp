@@ -40,6 +40,7 @@ public class MainScreen extends AppCompatActivity {
 
         binding.BnewChat.setOnClickListener(view -> {
             Intent val = new Intent(this, CartActivity.class);
+            getIntent().putExtra("email", auth.getCurrentUser().getEmail());
             startActivity(val);
         });
 

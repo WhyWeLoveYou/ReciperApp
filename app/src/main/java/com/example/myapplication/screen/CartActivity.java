@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.cartitem;
+import com.example.myapplication.database.itemTambahM;
 import com.example.myapplication.databinding.ActivityCart2Binding;
 import com.example.myapplication.screen.adapter.cartAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +36,6 @@ public class CartActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private cartAdapter cartRVAdapter;
     private FirebaseAuth auth;
-
     private ActivityCart2Binding binding;
 
     @Override
@@ -70,11 +71,6 @@ public class CartActivity extends AppCompatActivity {
                                 cartitem c = d.toObject(cartitem.class);
                                 cartArrayList.add(c);
                             }
-
-                            ImageButton deleteButton = findViewById(R.id.imageViewDelete);
-                            deleteButton.setOnClickListener(v -> {
-                                deleteDataFirebase(cartArrayList.get);
-                            });
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
                             binding.progressB.setVisibility(View.GONE);
@@ -90,7 +86,8 @@ public class CartActivity extends AppCompatActivity {
                 });
     }
 
-    private void deleteDataFirebase(String documentId) {
+    private void deleteDataFirebase() {
+        String documentId = new cartitem().getDocumentId();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         if (auth.getCurrentUser() == null) {

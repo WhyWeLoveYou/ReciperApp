@@ -79,8 +79,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
             imageView = itemView.findViewById(R.id.imageView);
             imageButton = itemView.findViewById(R.id.imageViewDelete);
-            auth = FirebaseAuth.getInstance();
-            firebaseFirestore = FirebaseFirestore.getInstance();
         }
     }
 }
