@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class MainScreen extends AppCompatActivity {
 
     private ActivityMainScreenBinding binding;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

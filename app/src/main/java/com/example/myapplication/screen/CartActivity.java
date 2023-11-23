@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -70,9 +71,9 @@ public class CartActivity extends AppCompatActivity {
                                 cartArrayList.add(c);
                             }
 
-                            ImageView deleteButton = findViewById(R.id.imageViewDelete);
+                            ImageButton deleteButton = findViewById(R.id.imageViewDelete);
                             deleteButton.setOnClickListener(v -> {
-
+                                deleteDataFirebase(cartArrayList.get);
                             });
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
@@ -87,5 +88,24 @@ public class CartActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void deleteDataFirebase(String documentId) {
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        if (auth.getCurrentUser() == null) {
+            String userEmail = auth.getCurrentUser().getEmail();
+
+            db.collection("users").document(userEmail).collection("item")
+                    .document(documentId).delete()
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(getApplicationContext(), "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+        }
     }
     }
