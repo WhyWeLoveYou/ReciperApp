@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.itemTambahM;
@@ -25,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.UUID;
 
 public class CumanNambahData extends AppCompatActivity {
 
@@ -32,6 +34,7 @@ public class CumanNambahData extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore;
 
     private String encodedImage;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,21 +83,24 @@ public class CumanNambahData extends AppCompatActivity {
     );
 
     private void addDataToFirestore(String Gambar) {
+        auth = FirebaseAuth.getInstance();
         String nMakan = binding.InputName.getText().toString();
         String alamat = binding.InputEmal.getText().toString();
         String hrga = binding.InputPw.getText().toString();
+        UUID documentd = UUID.randomUUID();
+        String documentId = String.valueOf(documentd);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar);
+        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar, documentId);
 
         firebaseFirestore.collection("item_penjualan").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                System.out.println("Berhasil");
+                Toast.makeText(CumanNambahData.this, "Berhasil", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                System.out.println("gagal");
+                Toast.makeText(CumanNambahData.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
 

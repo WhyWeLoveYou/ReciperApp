@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> {
 
@@ -79,7 +80,8 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private void addDataToFirestore(String NamaMakanan,String Alamat,String Harga, String Gambar) {
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        String documentId = auth.getCurrentUser().getUid().toString();
+        UUID documentd = UUID.randomUUID();
+        String documentId = String.valueOf(documentd);
         itemTambahM ITEM = new itemTambahM(NamaMakanan, Alamat, Harga, Gambar, documentId);
         String email = auth.getCurrentUser().getEmail();
 

@@ -50,9 +50,10 @@ public class cumanambahimg {
         String nMakan = "Kepiting Jawa";
         String alamat = "Pelabuhan Merapi";
         String hrga = "20.000";
+        String documentId = auth.getCurrentUser().getUid().toString();
         firebaseFirestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar);
+        itemTambahM ITEM = new itemTambahM(nMakan, alamat, hrga, Gambar, documentId);
 
         firebaseFirestore.collection("item_penjualan").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

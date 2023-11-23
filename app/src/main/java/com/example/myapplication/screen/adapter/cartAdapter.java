@@ -61,7 +61,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
 
         holder.imageButton.setOnClickListener(v -> {
             deleteDataFirebase(cartItem.getDocumentId());
-            Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -73,11 +72,10 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
                 .document(documentId)
                 .delete()
                 .addOnSuccessListener(aVoid -> {
-                    // Document successfully deleted
-                    // You can also update your local data if needed
+                    Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    // Handle errors
+                    Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
                 });
     }
 
