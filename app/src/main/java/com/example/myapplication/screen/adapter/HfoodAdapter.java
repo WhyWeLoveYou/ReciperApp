@@ -33,6 +33,9 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
     private FirebaseAuth auth;
     private FirebaseFirestore firebaseFirestore;
     private String itunya;
+    private Integer[] image = { R.drawable.makanan1, R.drawable.makanan2,R.drawable.makanan3,
+            R.drawable.makanan4, R.drawable.makanan5, R.drawable.makanan6, R.drawable.makanan7,
+            R.drawable.makanan8, R.drawable.makanan9, R.drawable, makanan10};
 
     public HfoodAdapter(ArrayList<itemTambahM> coursesArrayList, Context context) {
         this.MitemArrayList = coursesArrayList;
@@ -51,9 +54,12 @@ public class HfoodAdapter extends RecyclerView.Adapter<HfoodAdapter.ViewHolder> 
         holder.alamatmakanan.setText(Mitem.getAlamat());
         holder.hargamakanan.setText(Mitem.getHarga());
         if (Mitem.getGambar() == null) {
-            holder.imageview.setImageResource(R.drawable.makanan2);
-            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.makanan2);
-            itunya =  encodeImage(bm);
+            int i;
+            for(i=0; i<10;i++) {
+                holder.imageview.setImageResource(image[i]);
+                Bitmap bm = BitmapFactory.decodeResource(context.getResources(), image[i]);
+                itunya =  encodeImage(bm);
+            };
         } else {
             String bytea = Mitem.getGambar();
             byte[] bytes = Base64.decode(bytea, Base64.DEFAULT);
