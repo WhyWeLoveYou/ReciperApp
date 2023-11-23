@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class MainScreen extends AppCompatActivity {
 
     private ActivityMainScreenBinding binding;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainScreen extends AppCompatActivity {
 
         binding.BnewChat.setOnClickListener(view -> {
             Intent val = new Intent(this, CartActivity.class);
+            getIntent().putExtra("email", auth.getCurrentUser().getEmail());
             startActivity(val);
         });
 

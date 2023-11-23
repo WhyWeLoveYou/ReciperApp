@@ -58,27 +58,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             holder.imageView.setImageBitmap(bitmap);
         }
-
-        holder.imageButton.setOnClickListener(v -> {
-            deleteDataFirebase(cartItem.getDocumentId());
-        });
-    }
-
-    private void deleteDataFirebase(String documentId) {
-        if (auth.getCurrentUser() == null) {
-            String userEmail = auth.getCurrentUser().getEmail();
-
-            firebaseFirestore.collection("users").document(userEmail).collection("item")
-                    .document(documentId).delete()
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(context, "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-                    });
-        } else {
-            Toast.makeText(context, "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -100,8 +79,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ViewHolder> {
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
             imageView = itemView.findViewById(R.id.imageView);
             imageButton = itemView.findViewById(R.id.imageViewDelete);
-            auth = FirebaseAuth.getInstance();
-            firebaseFirestore = FirebaseFirestore.getInstance();
         }
     }
 }

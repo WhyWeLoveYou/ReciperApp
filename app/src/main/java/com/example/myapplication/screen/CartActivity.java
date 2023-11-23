@@ -6,15 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.cartitem;
+import com.example.myapplication.database.itemTambahM;
 import com.example.myapplication.databinding.ActivityCart2Binding;
 import com.example.myapplication.screen.adapter.cartAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,7 +36,6 @@ public class CartActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private cartAdapter cartRVAdapter;
     private FirebaseAuth auth;
-
     private ActivityCart2Binding binding;
 
     @Override
@@ -69,11 +71,6 @@ public class CartActivity extends AppCompatActivity {
                                 cartitem c = d.toObject(cartitem.class);
                                 cartArrayList.add(c);
                             }
-
-                            ImageView deleteButton = findViewById(R.id.imageViewDelete);
-                            deleteButton.setOnClickListener(v -> {
-
-                            });
                             cartRVAdapter.notifyDataSetChanged();
                         } else {
                             binding.progressB.setVisibility(View.GONE);
@@ -87,5 +84,25 @@ public class CartActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void deleteDataFirebase() {
+        String documentId = new cartitem().getDocumentId();
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        if (auth.getCurrentUser() == null) {
+            String userEmail = auth.getCurrentUser().getEmail();
+
+            db.collection("users").document(userEmail).collection("item")
+                    .document(documentId).delete()
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(getApplicationContext(), "Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(getApplicationContext(), "Tidak Berhasil Menghapus Cart", Toast.LENGTH_SHORT).show();
+        }
     }
     }
