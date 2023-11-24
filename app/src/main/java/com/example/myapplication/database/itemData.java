@@ -3,17 +3,17 @@ package com.example.myapplication.database;
 public class itemData{
 
 
-    private String NamaMakanan, Alamat, Harga, Gambar, documentId;
+    private String NamaMakanan, Alamat, Gambar, documentId, url;
 
     public itemData() {
 
     }
-    public itemData(String NamaMakanan, String Alamat, String Harga, String Gambar, String documentId) {
+    public itemData(String NamaMakanan, String Alamat, String Gambar, String documentId, String url) {
         this.NamaMakanan = NamaMakanan;
         this.Alamat = Alamat;
-        this.Harga = Harga;
         this.Gambar = Gambar;
         this.documentId = documentId;
+        this.url = url;
     }
 
     public String getNamaMakanan() {
@@ -32,14 +32,6 @@ public class itemData{
         this.Alamat = Alamat;
     }
 
-    public String getHarga() {
-        return Harga;
-    }
-
-    public void setHarga(String Harga) {
-        this.Harga = Harga;
-    }
-
     public String getGambar() {
         return Gambar;
     }
@@ -53,5 +45,13 @@ public class itemData{
 
     public String getDocumentId() {
         return documentId;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl(){
+        return url;
     }
 }

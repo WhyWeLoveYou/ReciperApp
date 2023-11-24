@@ -88,7 +88,6 @@ public class allmenuAdapter extends RecyclerView.Adapter<allmenuAdapter.ViewHold
                 itemTambahM Mitem = MitemArrayList.get(getAdapterPosition());
                 Intent val = new Intent(context.getApplicationContext(), detailAct.class);
                 val.putExtra("jeneng", Mitem.getNamaMakanan());
-                val.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(val);
             });
         }
