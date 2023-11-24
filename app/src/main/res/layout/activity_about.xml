@@ -43,7 +43,7 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardReceipt"
+                android:id="@+id/cardAlif"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_5sdp"
@@ -52,7 +52,7 @@
                 android:layout_height="@dimen/_75sdp">
 
                 <ImageView
-                    android:id="@+id/imageview"
+                    android:id="@+id/imageviewAlif"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -62,10 +62,10 @@
 
             <TextView
                 android:layout_marginTop="@dimen/_5sdp"
-                android:id="@+id/judulReceipt"
+                android:id="@+id/AlifMustafa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/cardReceipt"
+                android:layout_toRightOf="@+id/cardAlif"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"
@@ -74,28 +74,29 @@
                 tools:text="Alip Mustafa" />
 
             <TextView
-                android:id="@+id/alamatmakanan"
+                android:id="@+id/positionAlif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/cardReceipt"
-                android:layout_below="@+id/judulReceipt"
+                android:layout_toRightOf="@+id/cardAlif"
+                android:layout_below="@+id/AlifMustafa"
                 android:textColor="@color/second_text"
                 android:textSize="@dimen/_11ssp"
                 android:fontFamily="@font/poppins"
-                tools:text="Nasi goreng mama" />
+                tools:text="BackEnd" />
 
             <Button
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:id="@+id/tambahmakanan"
-                android:text="Baca"
+                android:id="@+id/socialAlif"
+                android:text="Social"
                 android:textSize="@dimen/_10ssp"
-                android:layout_toRightOf="@+id/cardReceipt"
+                android:layout_toRightOf="@+id/cardAlif"
                 android:textColor="@color/black"
-                android:layout_below="@id/alamatmakanan"/>
+                android:onClick="socialAlif"
+                android:layout_below="@id/positionAlif"/>
 
         </RelativeLayout>
 
@@ -106,7 +107,7 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardReceip"
+                android:id="@+id/cardTino"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_75sdp"
                 android:layout_marginStart="@dimen/_5sdp"
@@ -115,7 +116,7 @@
                 app:cardCornerRadius="@dimen/_10sdp">
 
                 <ImageView
-                    android:id="@+id/imagevie"
+                    android:id="@+id/imageTino"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -124,35 +125,35 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/judulReceip"
+                android:id="@+id/NamaTino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_toRightOf="@+id/cardReceip"
+                android:layout_toRightOf="@+id/cardTino"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold"
-                tools:text="Nama Makanan" />
+                tools:text="Isaiah Tino Surya S" />
 
             <TextView
-                android:id="@+id/alamatmakana"
+                android:id="@+id/positionTino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/judulReceip"
+                android:layout_below="@+id/NamaTino"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/cardReceip"
+                android:layout_toRightOf="@+id/cardTino"
                 android:fontFamily="@font/poppins"
                 android:textColor="@color/second_text"
                 android:textSize="@dimen/_11ssp"
-                tools:text="Nasi goreng mama" />
+                tools:text="Frontend" />
 
             <Button
                 android:id="@+id/tambahmakana"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_below="@id/alamatmakana"
+                android:layout_below="@id/positionTino"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_toRightOf="@+id/cardReceip"
