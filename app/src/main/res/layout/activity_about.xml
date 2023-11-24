@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
     tools:context=".screen.CartActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -13,70 +13,281 @@
         android:layout_height="@dimen/_30sdp"
         android:id="@+id/ImgBack"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/round_arrow_back_ios_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/white" />
+        android:tint="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/ImgBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ImgBack" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_marginTop="@dimen/_16sdp"
-        android:background="@drawable/background_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ImgBack">
+        android:layout_centerHorizontal="true"
+        android:text="About"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/ImgBack"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold" />
 
+    <RelativeLayout
+        android:layout_below="@+id/ImgBack"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
+            android:id="@+id/relativeLayout_RecommendationReceipt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardReceipt"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_75sdp">
+
+                <ImageView
+                    android:id="@+id/imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/makanan1" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/judulReceipt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HALO BANG"
-                />
+                android:layout_toRightOf="@+id/cardReceipt"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:fontFamily="@font/poppins"
+                android:textStyle="bold"
+                tools:text="Nama Makanan" />
 
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/alamatmakanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardReceipt"
+                android:layout_below="@+id/judulReceipt"
+                android:textColor="@color/second_text"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/poppins"
+                tools:text="Nasi goreng mama" />
 
-    </LinearLayout>
+            <Button
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:id="@+id/tambahmakanan"
+                android:text="Baca"
+                android:textSize="@dimen/_10ssp"
+                android:layout_toRightOf="@+id/cardReceipt"
+                android:textColor="@color/black"
+                android:layout_below="@id/alamatmakanan"/>
 
-        <TextView
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_RecommendationReceip"
+            android:layout_below="@+id/relativeLayout_RecommendationReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardReceip"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/imagevie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/makanan1" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/judulReceip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/cardReceip"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                tools:text="Nama Makanan" />
+
+            <TextView
+                android:id="@+id/alamatmakana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/judulReceip"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardReceip"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/second_text"
+                android:textSize="@dimen/_11ssp"
+                tools:text="Nasi goreng mama" />
+
+            <Button
+                android:id="@+id/tambahmakana"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/alamatmakana"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardReceip"
+                android:text="Baca"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_RecommendationRecei"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textErrorMsg"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_24sdp"
-            android:layout_marginEnd="@dimen/_24sdp"
-            android:gravity="center"
-            android:textColor="@color/error"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone" />
-    </FrameLayout>
+            android:layout_below="@+id/relativeLayout_RecommendationReceip">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRecei"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imagevi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/makanan1" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/judulRecei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/cardRecei"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                tools:text="Nama Makanan" />
+
+            <TextView
+                android:id="@+id/alamatmakan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/judulRecei"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardRecei"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/second_text"
+                android:textSize="@dimen/_11ssp"
+                tools:text="Nasi goreng mama" />
+
+            <Button
+                android:id="@+id/tambahmakan"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/alamatmakan"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardRecei"
+                android:text="Baca"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_RecommendationRece"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout_RecommendationRecei">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRece"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/imagev"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/makanan1" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/judulRece"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/cardRece"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                tools:text="Nama Makanan" />
+
+            <TextView
+                android:id="@+id/alamatmaka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/judulRece"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardRece"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/second_text"
+                android:textSize="@dimen/_11ssp"
+                tools:text="Nasi goreng mama" />
+
+            <Button
+                android:id="@+id/tambahmaka"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/alamatmaka"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/cardRece"
+                android:text="Baca"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
