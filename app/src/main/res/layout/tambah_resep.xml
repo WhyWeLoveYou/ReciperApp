@@ -8,7 +8,7 @@
     android:overScrollMode="never"
     android:padding="@dimen/_10sdp"
     android:scrollbars="none"
-    tools:context=".helper.CumanNambahData">
+    tools:context=".helper.CumanNambahResep">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                 android:layout_height="@dimen/_45sdp"
                 android:id="@+id/ButtonLogin"
                 android:text="Tambah"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp" />
