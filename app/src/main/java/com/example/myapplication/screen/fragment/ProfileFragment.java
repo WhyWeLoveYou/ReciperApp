@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ProfileBinding;
 import com.example.myapplication.helper.CumanNambahData;
+import com.example.myapplication.screen.About;
 import com.example.myapplication.screen.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = ProfileBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
 
@@ -48,6 +50,8 @@ public class ProfileFragment extends Fragment {
         listener();
         getUserDetail();
     }
+
+
 
     private void showToast(String message) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
@@ -63,6 +67,14 @@ public class ProfileFragment extends Fragment {
         });
         binding.Bsimaaaobt.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), CumanNambahData.class);
+            startActivity(intent);
+        });
+        binding.ImgBack.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), About.class);
+            startActivity(intent);
+        });
+        binding.Bsimaaaort.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), CumanNambahResep.class);
             startActivity(intent);
         });
     }
