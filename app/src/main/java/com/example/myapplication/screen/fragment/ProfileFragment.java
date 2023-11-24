@@ -69,7 +69,7 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(requireContext(), CumanNambahData.class);
             startActivity(intent);
         });
-        binding.Bsimaaaobt.setOnClickListener(v -> {
+        binding.ImgBack.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), About.class);
             startActivity(intent);
         });
