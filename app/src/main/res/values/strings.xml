@@ -19,6 +19,7 @@
     <string name="recommendation_food">Recommendation</string>
     <string name="category">Category</string>
     <string name="title">Receipt</string>
+    <string name="about">Aplikasi Kuliner adalah teman setia para pencinta makanan yang selalu haus akan petualangan kuliner. Dengan antarmuka yang ramah pengguna dan fitur yang inovatif, Aplikasi Kuliner tidak hanya menjadi panduan makanan sehari-hari, tetapi juga portal untuk menjelajahi keanekaragaman cita rasa di berbagai penjuru dunia.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
