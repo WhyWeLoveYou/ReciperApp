@@ -104,7 +104,7 @@ public class CumanNambahResep extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         itemData ITEM = new itemData(nMakan, alamat, Gambar, documentId, url);
 
-        firebaseFirestore.collection("item_resep").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firebaseFirestore.collection("item_recipe").document(nMakan).set(ITEM).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
