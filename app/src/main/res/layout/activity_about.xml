@@ -71,7 +71,7 @@
                 android:textSize="@dimen/_15ssp"
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold"
-                tools:text="Nama Makanan" />
+                tools:text="Alip Mustafa" />
 
             <TextView
                 android:id="@+id/alamatmakanan"
