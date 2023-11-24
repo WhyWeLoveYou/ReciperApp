@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal">
 
         <TextView
@@ -36,7 +36,7 @@
             android:id="@+id/relativeLayout_RecommendationReceipt"
             android:layout_below="@+id/view_Line"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_10sdp">
 
             <TextView
@@ -52,46 +52,15 @@
                 android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_RecommendationReceipt"
-                android:layout_below="@+id/textView_RecommendationReceipt"
+                android:id="@+id/RecommendationReceiptRV"
+                android:layout_below="@id/textView_RecommendationReceipt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:scrollbars="horizontal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_below="@+id/relativeLayout_RecommendationReceipt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <TextView
-                android:id="@+id/textView_RecommendationReceip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:text="@string/yang_ada"
-                android:textSize="@dimen/_20sdp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_RecommendationReceip"
-                android:layout_below="@+id/textView_RecommendationReceip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:orientation="vertical"
                 android:scrollbars="vertical"/>
-
         </RelativeLayout>
 
     </RelativeLayout>
-
-
 </ScrollView>
