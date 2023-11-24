@@ -70,7 +70,11 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
         binding.ImgBack.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), About.class);
+            Intent intent = new Intent(requireContext(), About.class);
+            startActivity(intent);
+        });
+        binding.Bsimaaaort.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), CumanNambahResep.class);
             startActivity(intent);
         });
     }
